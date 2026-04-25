@@ -1,0 +1,7 @@
+name = "tireguy-live-pages"
+pages_build_output_dir = "."
+
+[[kv_namespaces]]
+binding = "TG_DATA"
+id = "ac37a12ddc7a42859fdf87ca321b6f5d"
+preview_id = "REPLACE_WITH_YOUR_KV_PREVIEW_NAMESPACE_ID"

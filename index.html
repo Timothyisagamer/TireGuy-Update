@@ -1,0 +1,1358 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title id="doc-title">TireGuy Automotive — Quality You Can Feel</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#d4af37;--navy:#0a1929;--dark-navy:#081322;--gray:#9ca3af;--light:#f5f3f0;--border:#1a3660;
+  --fh:'Bebas Neue',sans-serif;--fb:'DM Sans',sans-serif;
+}
+body{background:var(--navy);color:var(--gold);font-family:var(--fb);line-height:1.6}
+a{text-decoration:none;color:inherit}
+
+/* ── NAV ── */
+nav{background:var(--navy);position:sticky;top:0;z-index:200;padding:0 5%}
+.nav-inner{display:flex;align-items:center;height:60px;gap:4px}
+.nav-logo{font-family:var(--fh);font-size:24px;color:var(--gold);cursor:pointer;white-space:nowrap;margin-right:16px}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:0;margin-left:auto;flex-wrap:nowrap;align-items:center}
+.nav-links a{color:#9ca3af;font-size:13px;font-weight:500;cursor:pointer;transition:color .15s,background .15s;white-space:nowrap;padding:8px 12px;border-radius:6px}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);background:rgba(255,255,255,.06)}
+.nav-cta{background:var(--gold)!important;color:#fff!important;font-weight:700!important;border-radius:8px!important}
+.nav-cta:hover{background:#c5a028!important}
+.nav-acct-btn{background:var(--navy)!important;color:#9ca3af!important;font-weight:600!important;border-radius:8px!important}
+.nav-acct-btn:hover{color:var(--gold)!important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;margin-left:auto;padding:8px}
+.hamburger span{width:22px;height:2px;background:#fff;border-radius:2px}
+.mmenu{display:none;flex-direction:column;background:var(--navy);padding:12px 5%;gap:4px;border-top:1px solid #222}
+.mmenu a{color:#9ca3af;font-size:14px;font-weight:500;padding:10px 12px;border-radius:8px;cursor:pointer;display:block}
+.mmenu a:hover{color:var(--gold);background:var(--navy)}
+.mmenu.open{display:flex}
+
+/* ── HERO ── */
+.hero{background:var(--navy);color:var(--gold);padding:80px 5% 60px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 65% 50%,rgba(212,175,55,.15),transparent 60%)}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;position:relative;z-index:1}
+.hero-tag{font-family:var(--fh);font-size:11px;letter-spacing:3px;color:var(--gold);margin-bottom:14px}
+.hero-title{font-family:var(--fh);font-size:clamp(46px,6vw,80px);letter-spacing:2px;line-height:.95;margin-bottom:18px}
+.hero-title em{color:var(--gold);font-style:normal}
+.hero-sub{color:#9ca3af;font-size:15px;line-height:1.75;margin-bottom:28px;max-width:420px}
+.hero-btns{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;font-family:var(--fb);font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all .18s;text-decoration:none}
+.btn-p{background:var(--gold);color:#fff}.btn-p:hover{background:#c5a028;transform:translateY(-1px)}
+.btn-o{background:transparent;border:1.5px solid var(--border);color:var(--gold)}.btn-o:hover{border-color:var(--gold);color:var(--gold)}
+.btn-d{background:transparent;border:1.5px solid var(--border);color:var(--dark)}.btn-d:hover{border-color:var(--gold);color:var(--gold)}
+.btn-sm{padding:8px 16px;font-size:13px}
+.btn-ghost{background:transparent;border:1.5px solid var(--border);color:var(--dark)}.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.hero-stats{display:flex;gap:28px;margin-top:36px;flex-wrap:wrap}
+.hs-num{font-family:var(--fh);font-size:34px;color:var(--gold)}
+.hs-lbl{font-size:11px;color:#6b7280;text-transform:uppercase;letter-spacing:1px}
+
+/* ── LOGO FLOAT ── */
+.hero-visual{display:flex;align-items:center;justify-content:center}
+.hero-logo-wrap{position:relative;display:flex;align-items:center;justify-content:center;width:300px;height:300px}
+.hero-logo-img{max-width:280px;max-height:280px;object-fit:contain;filter:drop-shadow(0 12px 40px rgba(212,175,55,.4)) drop-shadow(0 4px 16px rgba(0,0,0,.5));position:relative;z-index:2;animation:logofloat 4s ease-in-out infinite}
+@keyframes logofloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.hero-logo-glow{position:absolute;width:200px;height:200px;background:radial-gradient(circle,rgba(212,175,55,.3),transparent 70%);border-radius:50%;z-index:1;animation:logofloat 4s ease-in-out infinite}
+
+/* ── TRUST BAR ── */
+.trust{background:var(--gold);padding:13px 5%}
+.trust-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-around;flex-wrap:wrap;gap:8px}
+.trust-item{color:#fff;font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px}
+
+/* ── SECTIONS ── */
+section{padding:72px 5%}
+.si{max-width:1200px;margin:0 auto}
+.s-tag{font-family:var(--fh);font-size:11px;letter-spacing:3px;color:var(--gold);margin-bottom:8px}
+.s-title{font-family:var(--fh);font-size:clamp(30px,4vw,50px);letter-spacing:1px;line-height:1;margin-bottom:10px}
+.s-sub{color:var(--gray);font-size:15px;max-width:560px;margin-bottom:36px}
+
+/* ── SERVICES ── */
+#services{background:var(--navy)}
+.svc-grid{display:flex;gap:18px;overflow-x:auto;padding-bottom:8px;-webkit-overflow-scrolling:touch}
+.svc-grid::-webkit-scrollbar{height:6px}
+.svc-grid::-webkit-scrollbar-track{background:#f5f3f0;border-radius:3px}
+.svc-grid::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px}
+.svc-grid::-webkit-scrollbar-thumb:hover{background:#c5a028}
+.svc-card{background:rgba(30,58,95,.4);border:1.5px solid var(--border);border-radius:14px;padding:22px;transition:all .2s;cursor:pointer;position:relative;flex:0 0 280px;min-height:180px;display:flex;flex-direction:column;justify-content:space-between}
+.svc-card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 12px 32px rgba(212,175,55,.12)}
+.svc-card:hover .svc-arrow{opacity:1;transform:translateX(0)}
+.svc-icon{font-size:30px;margin-bottom:10px}
+.svc-name{font-family:var(--fh);font-size:20px;letter-spacing:.5px;margin-bottom:5px}
+.svc-desc{font-size:13px;color:var(--gray);margin-bottom:10px;line-height:1.6}
+.svc-dur{font-size:12px;color:var(--gray)}
+.svc-arrow{font-size:12px;color:var(--gold);margin-top:10px;opacity:0;transform:translateX(-4px);transition:all .2s;font-weight:600}
+
+/* ── SERVICE DETAIL MODAL ── */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:600;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px)}
+.svc-modal-box{background:#fff;border-radius:20px;padding:36px;width:100%;max-width:480px;position:relative;animation:modalPop .25s ease}
+@keyframes modalPop{from{opacity:0;transform:scale(.95) translateY(8px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.modal-close-btn{position:absolute;top:16px;right:16px;background:#f5f3f0;border:none;width:32px;height:32px;border-radius:50%;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--gray);transition:all .15s}
+.modal-close-btn:hover{background:var(--navy);color:var(--gold)}
+
+/* ── AUTH MODAL ── */
+.auth-modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:500;display:flex;align-items:center;justify-content:center;padding:16px}
+.auth-modal-box{background:#fff;border-radius:16px;padding:32px;width:100%;max-width:420px;position:relative}
+.auth-modal-title{font-family:var(--fh);font-size:22px;letter-spacing:.5px;margin-bottom:20px}
+.auth-modal-close{position:absolute;top:16px;right:16px;background:none;border:none;font-size:18px;cursor:pointer;color:var(--gray)}
+.auth-modal-close:hover{color:var(--navy)}
+.modal-tabs{display:flex;gap:0;margin-bottom:20px;border:1.5px solid var(--border);border-radius:8px;overflow:hidden}
+.modal-tab{flex:1;padding:9px;font-size:13px;font-weight:600;cursor:pointer;background:#fff;color:var(--gray);border:none;font-family:var(--fb)}
+.modal-tab.active{background:var(--gold);color:#fff}
+.fi-m{background:var(--light);border:1.5px solid var(--border);border-radius:8px;padding:10px 13px;color:var(--navy);font-family:var(--fb);font-size:14px;outline:none;transition:border-color .15s;width:100%}
+.fi-m:focus{border-color:var(--gold)}
+.err-box{color:#ef4444;font-size:12px;margin-top:8px;min-height:16px}
+.fg{display:flex;flex-direction:column;gap:4px}
+.fl-d{font-size:10px;color:var(--gray);text-transform:uppercase;letter-spacing:1.5px;font-weight:600}
+
+/* ── DIAGNOSTICS ── */
+#diagnostics{background:var(--navy);color:var(--gold)}
+#diagnostics .s-sub{color:#9ca3af}
+.diag-wrap{max-width:860px}
+.diag-progress-bar-wrap{height:4px;background:#222;border-radius:4px;margin-bottom:24px;overflow:hidden}
+.diag-progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),#d4af37);border-radius:4px;transition:width .4s ease}
+.diag-steps-nav{display:flex;gap:6px;margin-bottom:24px;flex-wrap:wrap}
+.dsn-btn{padding:7px 14px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;border:1.5px solid #333;color:#6b7280;background:transparent;transition:all .2s;white-space:nowrap}
+.dsn-btn.active{background:var(--gold);border-color:var(--gold);color:#fff}
+.dsn-btn.done{border-color:#2a2a2a;color:#444;cursor:default}
+.diag-panel{background:rgba(30,58,95,.3);border:1px solid var(--border);border-radius:16px;padding:28px}
+.diag-panel-title{font-family:var(--fh);font-size:18px;color:var(--gold);letter-spacing:.5px;margin-bottom:16px}
+.di{background:var(--navy);border:1px solid var(--border);border-radius:8px;padding:10px 13px;color:var(--gold);font-family:var(--fb);font-size:14px;outline:none;transition:border-color .15s;width:100%}
+.di:focus{border-color:var(--gold)}
+.di::placeholder{color:#555}
+.sym-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.sym-tag{padding:8px 14px;border-radius:20px;font-size:13px;font-weight:500;cursor:pointer;border:1.5px solid #333;color:#9ca3af;background:transparent;transition:all .15s;user-select:none}
+.sym-tag:hover{border-color:#555;color:#ccc}
+.sym-tag.on{background:rgba(212,175,55,.15);border-color:var(--gold);color:var(--gold)}
+.diag-warn{margin-top:14px;background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.3);border-radius:8px;padding:12px 14px;color:#d4af37;font-size:12px;line-height:1.6}
+.diag-warn strong{display:block;margin-bottom:3px;color:var(--gold)}
+.spinner-sm{display:inline-block;width:14px;height:14px;border:2px solid #444;border-top-color:var(--gold);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── ABOUT ── */
+#about{background:var(--navy)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.trust-badge{display:flex;align-items:center;gap:12px;background:rgba(30,58,95,.4);border:1.5px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:10px}
+.trust-badge-icon{font-size:22px;flex-shrink:0}
+.trust-badge-title{font-weight:700;font-size:14px;margin-bottom:2px}
+.trust-badge-sub{font-size:12px;color:var(--gray)}
+.about-hero-card{background:var(--navy);color:var(--gold);border-radius:16px;padding:20px 24px;display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.about-hero-card-icon{font-size:32px}
+.about-hero-card strong{display:block;font-family:var(--fh);font-size:18px;letter-spacing:.5px;color:var(--gold);margin-bottom:2px}
+.about-hero-card p{font-size:13px;color:#9ca3af;margin:0}
+.about-text h2{font-family:var(--fh);font-size:clamp(32px,4vw,52px);letter-spacing:1px;line-height:1;margin-bottom:14px}
+.about-text h2 em{color:var(--gold);font-style:normal}
+.about-text p{color:var(--gray);font-size:15px;line-height:1.75;margin-bottom:14px}
+
+/* ── CUSTOMER ACCOUNT ── */
+#account-section{background:var(--navy)}
+.acct-tabs{display:flex;gap:0;margin-bottom:24px;border:1.5px solid var(--border);border-radius:10px;overflow:hidden;width:fit-content}
+.acct-tab{padding:10px 22px;font-size:13px;font-weight:600;cursor:pointer;background:rgba(30,58,95,.4);color:var(--gold);border:none;transition:all .15s;font-family:var(--fb)}
+.acct-tab.active{background:var(--gold);color:#fff}
+.acct-panel{display:none}.acct-panel.active{display:block}
+.acct-box{background:var(--light);border:1.5px solid var(--border);border-radius:14px;padding:26px;max-width:500px}
+.acct-box-wide{max-width:720px}
+.acct-field{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-size:14px}
+.acct-field:last-child{border-bottom:none}
+.acct-label{color:var(--gray);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.8px}
+.acct-val{font-weight:600;text-align:right}
+.welcome-banner{background:linear-gradient(135deg,#fef8e6,#fff);border:1.5px solid var(--gold);border-radius:14px;padding:18px 22px;margin-bottom:20px;display:flex;align-items:center;gap:14px}
+.welcome-banner-icon{font-size:30px}
+.welcome-banner h3{font-family:var(--fh);font-size:18px;letter-spacing:.5px;margin-bottom:3px}
+.welcome-banner p{font-size:13px;color:var(--gray);margin:0}
+.repair-item{background:rgba(30,58,95,.4);border:1.5px solid var(--border);border-radius:10px;padding:14px;margin-bottom:10px;color:var(--gold)}
+.repair-date{font-size:11px;color:var(--gray);margin-bottom:3px;font-family:monospace}
+.repair-svc{font-weight:600;font-size:14px}
+.repair-veh{font-size:12px;color:var(--gray);margin-top:2px}
+
+/* ── COMMUNITY ── */
+#community{background:var(--navy)}
+.post-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.post-card{background:rgba(10,25,41,.6);border:1.5px solid var(--border);border-radius:14px;padding:20px;transition:transform .2s}
+.post-card:hover{transform:translateY(-2px)}
+.post-cat{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px}
+.post-title{font-family:var(--fh);font-size:20px;letter-spacing:.5px;margin-bottom:7px}
+.post-body{font-size:14px;color:var(--gray);line-height:1.65}
+.post-meta{font-size:11px;color:#aaa;margin-top:10px}
+
+/* ── FAQ ── */
+#faq{background:var(--navy)}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{width:100%;text-align:left;background:none;border:none;padding:16px 0;font-family:var(--fb);font-size:15px;font-weight:600;color:var(--gold);cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.faq-q:hover{color:var(--gold)}
+.faq-a{font-size:14px;color:var(--gray);padding-bottom:14px;line-height:1.7;display:none}
+.faq-a.open{display:block}
+
+/* ── CONTACT ── */
+#contact{background:var(--navy)}
+.ct-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px}
+.cinfo{background:rgba(30,58,95,.4);border-radius:12px;padding:18px;display:flex;align-items:flex-start;gap:14px;margin-bottom:12px;border:1.5px solid var(--border)}
+.ci-icon{font-size:22px;flex-shrink:0}
+.ci-lbl{font-size:11px;color:var(--gray);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:3px}
+.ci-val{font-size:14px;font-weight:600}
+.ct-form{background:rgba(30,58,95,.4);border-radius:14px;padding:26px;border:1.5px solid var(--border)}
+.fi-l{background:var(--light);border:1.5px solid var(--border);border-radius:8px;padding:10px 13px;color:var(--navy);font-family:var(--fb);font-size:14px;outline:none;transition:border-color .15s;width:100%}
+.fi-l:focus{border-color:var(--gold)}
+.fi-l::placeholder{color:#aaa}
+
+/* ── SOCIAL ── */
+.social-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+.soc-btn{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;transition:all .15s;font-style:normal;font-weight:700}
+.soc-btn:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(0,0,0,.15)}
+
+/* ── FOOTER ── */
+footer{background:var(--navy);color:#9ca3af;padding:52px 5% 28px}
+.ft-inner{max-width:1200px;margin:0 auto}
+.ft-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px;margin-bottom:36px}
+.ft-logo{font-family:var(--fh);font-size:26px;color:var(--gold);margin-bottom:8px}
+.ft-logo span{color:var(--gold)}
+.ft-col h4{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--gold);margin-bottom:12px;font-weight:700}
+.ft-col ul{list-style:none}
+.ft-col ul li{padding:4px 0;font-size:13px;cursor:pointer}
+.ft-col ul li:hover{color:var(--gold)}
+.ft-bottom{border-top:1px solid #222;padding-top:20px;display:flex;justify-content:space-between;align-items:center;font-size:12px;flex-wrap:wrap;gap:10px}
+
+/* ── BELL ── */
+#bell{position:fixed;bottom:22px;right:22px;background:var(--gold);width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;box-shadow:0 4px 18px rgba(212,175,55,.35);z-index:300;transition:transform .2s}
+#bell:hover{transform:scale(1.1)}
+#bell-count{position:absolute;top:-4px;right:-4px;background:#ef4444;color:#fff;font-size:10px;font-weight:700;padding:0 5px;border-radius:10px;display:none;font-family:monospace}
+#bell-panel{display:none;position:fixed;bottom:84px;right:22px;width:300px;background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:0 8px 36px rgba(0,0,0,.12);z-index:300;overflow:hidden}
+#bell-panel.open{display:block}
+.bp-head{background:var(--navy);color:var(--gold);padding:13px 16px;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:14px}
+.bp-body{max-height:300px;overflow-y:auto;padding:12px}
+.bp-item{background:var(--light);border-radius:8px;padding:11px;margin-bottom:8px;font-size:13px;border-left:3px solid var(--gold)}
+.bp-title{font-weight:600;margin-bottom:2px}
+.bp-sub{color:var(--gray);font-size:12px}
+
+.hidden{display:none!important}
+.divider{border:none;border-top:1px solid var(--border);margin:16px 0}
+
+@media(max-width:768px){
+  .hero-inner,.about-grid,.ct-grid{grid-template-columns:1fr}
+  .hero-visual{display:none}
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .ft-top{grid-template-columns:1fr 1fr}
+  .acct-tabs{width:100%}
+  .acct-tab{flex:1;text-align:center}
+}
+@media(max-width:480px){
+  .ft-top{grid-template-columns:1fr}
+  section{padding:52px 5%}
+  .hero{padding:50px 5% 40px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="goTo('home')">TIRE<span>GUY</span></div>
+    <div class="nav-links">
+      <a onclick="goTo('home')" id="nl-home">Home</a>
+      <a onclick="goTo('services')" id="nl-services">Services</a>
+      <a onclick="goTo('diagnostics')" id="nl-diagnostics">Diagnostics</a>
+      <a onclick="goTo('about')" id="nl-about">About</a>
+      <a onclick="goTo('contact')" id="nl-contact" class="active">Contact</a>
+      <a onclick="openAccountArea()" id="nav-account-link" class="nav-acct-btn">My Account</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  </div>
+  <div class="mmenu" id="mmenu">
+    <a onclick="goTo('home');closeMenu()">Home</a>
+    <a onclick="goTo('services');closeMenu()">Services</a>
+    <a onclick="goTo('diagnostics');closeMenu()">AI Diagnostics</a>
+    <a onclick="goTo('about');closeMenu()">About Us</a>
+    <a onclick="goTo('contact');closeMenu()">Contact</a>
+    <a onclick="openAccountArea();closeMenu()">My Account</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home" style="padding:0">
+  <div class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-tag">Trusted Auto Care</div>
+        <h1 class="hero-title" id="hero-headline">TIRES &amp; AUTO CARE <em>DONE RIGHT</em></h1>
+        <p class="hero-sub" id="hero-sub">Fast, reliable service from technicians who actually care.</p>
+        <div class="hero-btns">
+          <button class="btn btn-p" onclick="goTo('services')">🔧 View Services</button>
+          <button class="btn btn-o" onclick="goTo('diagnostics')">🩺 Free Diagnostics</button>
+        </div>
+        <div class="hero-stats">
+          <div><div class="hs-num">10+</div><div class="hs-lbl">Years Of Experience</div></div>
+          <div><div class="hs-num">5K+</div><div class="hs-lbl">Happy Customers</div></div>
+          <div><div class="hs-num">4.9★</div><div class="hs-lbl">Avg Rating</div></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-logo-wrap">
+          <div class="hero-logo-glow"></div>
+          <img class="hero-logo-img" src="Image Files/IMG_2913.png" alt="TireGuy Automotive" onerror="this.replaceWith(Object.assign(document.createElement('div'),{style:'font-size:110px;filter:drop-shadow(0 0 30px rgba(212,175,55,.5))',textContent:'🛞'}))">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="trust">
+    <div class="trust-inner">
+      <div class="trust-item">✅ No Hidden Fees</div>
+      <div class="trust-item">🛞 Brand Name Tires</div>
+      <div class="trust-item">⚡ Same-Day Service</div>
+      <div class="trust-item">🔧 Certified Technicians</div>
+      <div class="trust-item">📍 Locally Owned</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="si">
+    <div class="s-tag">What We Do</div>
+    <h2 class="s-title">Our Services</h2>
+    <p class="s-sub">Click any service for details.</p>
+    <div class="svc-grid" id="svc-grid-home"><div class="svc-card" onclick="openSvcModal('🛞','Tire Rotation','~30 min','Extend tire life and maintain even tread wear across all four wheels.')">
+    <div class="svc-icon">🛞</div>
+    <div class="svc-name">Tire Rotation</div>
+    <div class="svc-desc">Extend tire life and maintain even tread wear across all four wheels.</div>
+    <div class="svc-dur">⏱ ~30 min</div>
+    <div class="svc-arrow">Tap for details →</div>
+  </div><div class="svc-card" onclick="openSvcModal('🔧','Oil Change','~30–45 min','Full synthetic or conventional oil change with filter replacement and top-off.')">
+    <div class="svc-icon">🔧</div>
+    <div class="svc-name">Oil Change</div>
+    <div class="svc-desc">Full synthetic or conventional oil change with filter replacement and top-off.</div>
+    <div class="svc-dur">⏱ ~30–45 min</div>
+    <div class="svc-arrow">Tap for details →</div>
+  </div><div class="svc-card" onclick="openSvcModal('🛑','Brake Service','~1–2 hours','Pad replacement, rotor inspection, and caliper check for all wheel positions.')">
+    <div class="svc-icon">🛑</div>
+    <div class="svc-name">Brake Service</div>
+    <div class="svc-desc">Pad replacement, rotor inspection, and caliper check for all wheel positions.</div>
+    <div class="svc-dur">⏱ ~1–2 hours</div>
+    <div class="svc-arrow">Tap for details →</div>
+  </div><div class="svc-card" onclick="openSvcModal('🔋','Battery Replacement','~30 min','Battery testing, replacement, and terminal cleaning to keep you starting every time.')">
+    <div class="svc-icon">🔋</div>
+    <div class="svc-name">Battery Replacement</div>
+    <div class="svc-desc">Battery testing, replacement, and terminal cleaning to keep you starting every time.</div>
+    <div class="svc-dur">⏱ ~30 min</div>
+    <div class="svc-arrow">Tap for details →</div>
+  </div><div class="svc-card" onclick="openSvcModal('❄️','A/C Service','~1 hour','Refrigerant recharge, leak check, and system performance test.')">
+    <div class="svc-icon">❄️</div>
+    <div class="svc-name">A/C Service</div>
+    <div class="svc-desc">Refrigerant recharge, leak check, and system performance test.</div>
+    <div class="svc-dur">⏱ ~1 hour</div>
+    <div class="svc-arrow">Tap for details →</div>
+  </div><div class="svc-card" onclick="openSvcModal('🌡️','Coolant Flush','~1 hour','Drain old coolant, flush the system, and refill with fresh antifreeze.')">
+    <div class="svc-icon">🌡️</div>
+    <div class="svc-name">Coolant Flush</div>
+    <div class="svc-desc">Drain old coolant, flush the system, and refill with fresh antifreeze.</div>
+    <div class="svc-dur">⏱ ~1 hour</div>
+    <div class="svc-arrow">Tap for details →</div>
+  </div></div>
+    <div style="text-align:center;margin-top:22px">
+      <button class="btn btn-d" onclick="showAllServices()">View All Services →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ALL SERVICES (hidden page) -->
+<section id="all-services" class="hidden">
+  <div class="si">
+    <div class="s-tag">Complete Menu</div>
+    <h2 class="s-title">All Services</h2>
+    <p class="s-sub">Click any service card for details and time estimates.</p>
+    <div class="svc-grid" id="svc-grid-all"><div class="svc-card" onclick="openSvcModal('🛞','Tire Rotation','~30 min','Extend tire life and maintain even tread wear across all four wheels.')">
+    <div class="svc-icon">🛞</div>
+    <div class="svc-name">Tire Rotation</div>
+    <div class="svc-desc">Extend tire life and maintain even tread wear across all four wheels.</div>
+    <div class="svc-dur">⏱ ~30 min</div>
+    <div class="svc-arrow">Tap for details →</div>
+  </div><div class="svc-card" onclick="openSvcModal('🔧','Oil Change','~30–45 min','Full synthetic or conventional oil change with filter replacement and top-off.')">
+    <div class="svc-icon">🔧</div>
+    <div class="svc-name">Oil Change</div>
+    <div class="svc-desc">Full synthetic or conventional oil change with filter replacement and top-off.</div>
+    <div class="svc-dur">⏱ ~30–45 min</div>
+    <div class="svc-arrow">Tap for details →</div>
+  </div><div class="svc-card" onclick="openSvcModal('🛑','Brake Service','~1–2 hours','Pad replacement, rotor inspection, and caliper check for all wheel positions.')">
+    <div class="svc-icon">🛑</div>
+    <div class="svc-name">Brake Service</div>
+    <div class="svc-desc">Pad replacement, rotor inspection, and caliper check for all wheel positions.</div>
+    <div class="svc-dur">⏱ ~1–2 hours</div>
+    <div class="svc-arrow">Tap for details →</div>
+  </div><div class="svc-card" onclick="openSvcModal('🔋','Battery Replacement','~30 min','Battery testing, replacement, and terminal cleaning to keep you starting every time.')">
+    <div class="svc-icon">🔋</div>
+    <div class="svc-name">Battery Replacement</div>
+    <div class="svc-desc">Battery testing, replacement, and terminal cleaning to keep you starting every time.</div>
+    <div class="svc-dur">⏱ ~30 min</div>
+    <div class="svc-arrow">Tap for details →</div>
+  </div><div class="svc-card" onclick="openSvcModal('❄️','A/C Service','~1 hour','Refrigerant recharge, leak check, and system performance test.')">
+    <div class="svc-icon">❄️</div>
+    <div class="svc-name">A/C Service</div>
+    <div class="svc-desc">Refrigerant recharge, leak check, and system performance test.</div>
+    <div class="svc-dur">⏱ ~1 hour</div>
+    <div class="svc-arrow">Tap for details →</div>
+  </div><div class="svc-card" onclick="openSvcModal('🌡️','Coolant Flush','~1 hour','Drain old coolant, flush the system, and refill with fresh antifreeze.')">
+    <div class="svc-icon">🌡️</div>
+    <div class="svc-name">Coolant Flush</div>
+    <div class="svc-desc">Drain old coolant, flush the system, and refill with fresh antifreeze.</div>
+    <div class="svc-dur">⏱ ~1 hour</div>
+    <div class="svc-arrow">Tap for details →</div>
+  </div><div class="svc-card" onclick="openSvcModal('🔍','Vehicle Inspection','~45 min','Comprehensive multi-point inspection covering all major systems.')">
+    <div class="svc-icon">🔍</div>
+    <div class="svc-name">Vehicle Inspection</div>
+    <div class="svc-desc">Comprehensive multi-point inspection covering all major systems.</div>
+    <div class="svc-dur">⏱ ~45 min</div>
+    <div class="svc-arrow">Tap for details →</div>
+  </div><div class="svc-card" onclick="openSvcModal('⚙️','Wheel Alignment','~1 hour','Computer-aided alignment to manufacturer specs for better handling and tire life.')">
+    <div class="svc-icon">⚙️</div>
+    <div class="svc-name">Wheel Alignment</div>
+    <div class="svc-desc">Computer-aided alignment to manufacturer specs for better handling and tire life.</div>
+    <div class="svc-dur">⏱ ~1 hour</div>
+    <div class="svc-arrow">Tap for details →</div>
+  </div><div class="svc-card" onclick="openSvcModal('🛻','Tire Mounting &amp; Balancing','~45 min','Professional mounting and precision balancing for a smooth, vibration-free ride.')">
+    <div class="svc-icon">🛻</div>
+    <div class="svc-name">Tire Mounting &amp; Balancing</div>
+    <div class="svc-desc">Professional mounting and precision balancing for a smooth, vibration-free ride.</div>
+    <div class="svc-dur">⏱ ~45 min</div>
+    <div class="svc-arrow">Tap for details →</div>
+  </div><div class="svc-card" onclick="openSvcModal('🚗','Full Tire Package','~2 hours','4 new tires, mounted, balanced, and aligned. Brand and size selection available.')">
+    <div class="svc-icon">🚗</div>
+    <div class="svc-name">Full Tire Package</div>
+    <div class="svc-desc">4 new tires, mounted, balanced, and aligned. Brand and size selection available.</div>
+    <div class="svc-dur">⏱ ~2 hours</div>
+    <div class="svc-arrow">Tap for details →</div>
+  </div></div>
+    <div style="margin-top:28px">
+      <button class="btn btn-d" onclick="hideAllServices()">← Back to Home</button>
+    </div>
+  </div>
+</section>
+
+<!-- DIAGNOSTICS -->
+<section id="diagnostics">
+  <div class="si">
+    <div class="s-tag">Smart Tools</div>
+    <h2 class="s-title" style="color:var(--gold)">Vehicle Diagnostics</h2>
+    <p class="s-sub" style="color:#9ca3af;margin-bottom:24px">Step-by-step symptom selection. AI analysis in seconds.</p>
+
+    <div id="diag-tool" class="diag-wrap">
+      <div class="diag-progress-bar-wrap"><div class="diag-progress-fill" id="diag-bar" style="width:25%"></div></div>
+      <div class="diag-steps-nav">
+        <button class="dsn-btn active" id="dsb-1" onclick="dStep(1)">1. Vehicle</button>
+        <button class="dsn-btn" id="dsb-2">2. Symptoms</button>
+        <button class="dsn-btn" id="dsb-3">3. Details</button>
+        <button class="dsn-btn" id="dsb-4">4. Results</button>
+      </div>
+
+      <!-- Step 1 -->
+      <div class="diag-panel" id="dp-1">
+        <div class="diag-panel-title">YOUR VEHICLE</div>
+        <div class="fg" style="margin-bottom:12px">
+          <label style="font-size:10px;color:#9ca3af;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;margin-bottom:4px;display:block">Year, Make &amp; Model *</label>
+          <input class="di" id="dv-vehicle" placeholder="e.g. 2019 Honda Civic">
+        </div>
+        <div class="fg" style="margin-bottom:20px">
+          <label style="font-size:10px;color:#9ca3af;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;margin-bottom:4px;display:block">Approximate Mileage</label>
+          <input class="di" id="dv-mileage" placeholder="e.g. 65,000 miles">
+        </div>
+        <button class="btn btn-p" onclick="dNext(1)">Next: Select Symptoms →</button>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="diag-panel hidden" id="dp-2">
+        <div class="diag-panel-title">SELECT ALL SYMPTOMS</div>
+        <p style="color:#9ca3af;font-size:13px;margin-bottom:14px">Tap every symptom your vehicle is showing</p>
+        <div class="sym-grid">
+          <button class="sym-tag" data-sym="Grinding or squealing when braking" onclick="tSym(this)">🛑 Grinding brakes</button>
+          <button class="sym-tag" data-sym="Soft or spongy brake pedal" onclick="tSym(this)">🚗 Soft brake pedal</button>
+          <button class="sym-tag" data-sym="Car pulls to one side while driving" onclick="tSym(this)">↔️ Pulls to one side</button>
+          <button class="sym-tag" data-sym="Steering wheel vibrates" onclick="tSym(this)">🔄 Steering vibration</button>
+          <button class="sym-tag" data-sym="Unusual noise from tires or wheels" onclick="tSym(this)">🔊 Tire/wheel noise</button>
+          <button class="sym-tag" data-sym="Flat tire or low tire pressure warning light" onclick="tSym(this)">🫧 Low tire pressure</button>
+          <button class="sym-tag" data-sym="Check engine light is on" onclick="tSym(this)">⚠️ Check engine light</button>
+          <button class="sym-tag" data-sym="Engine overheating or coolant warning" onclick="tSym(this)">🌡️ Overheating</button>
+          <button class="sym-tag" data-sym="Oil leak or low oil warning" onclick="tSym(this)">🛢️ Oil leak/warning</button>
+          <button class="sym-tag" data-sym="Car won't start or battery issues" onclick="tSym(this)">🔋 Won't start</button>
+          <button class="sym-tag" data-sym="Air conditioning not cooling" onclick="tSym(this)">❄️ A/C not cooling</button>
+          <button class="sym-tag" data-sym="Vibration at highway speeds" onclick="tSym(this)">📳 Highway vibration</button>
+          <button class="sym-tag" data-sym="Rough idle or engine shaking at rest" onclick="tSym(this)">💨 Rough idle</button>
+          <button class="sym-tag" data-sym="Smoke from engine or exhaust" onclick="tSym(this)">💨 Smoke/exhaust</button>
+          <button class="sym-tag" data-sym="Clunking or popping noise when turning" onclick="tSym(this)">💥 Clunk turning</button>
+          <button class="sym-tag" data-sym="Vehicle handles poorly or drifts" onclick="tSym(this)">🏎️ Poor handling</button>
+        </div>
+        <div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn btn-p" onclick="dNext(2)">Next: Add Details →</button>
+          <button class="btn btn-o" onclick="dStep(1)" style="font-size:13px;padding:8px 16px">← Back</button>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="diag-panel hidden" id="dp-3">
+        <div class="diag-panel-title">ADDITIONAL DETAILS</div>
+        <div class="fg" style="margin-bottom:14px">
+          <label style="font-size:10px;color:#9ca3af;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;margin-bottom:4px;display:block">When did it start?</label>
+          <select id="dv-when" class="di" style="cursor:pointer">
+            <option value="just started">Just started</option>
+            <option value="a few weeks ago">A few weeks ago</option>
+            <option value="a few months ago">A few months ago</option>
+            <option value="gradually gotten worse over time">Gradually gotten worse</option>
+          </select>
+        </div>
+        <div class="fg" style="margin-bottom:20px">
+          <label style="font-size:10px;color:#9ca3af;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;margin-bottom:4px;display:block">Any other details?</label>
+          <textarea id="dv-extra" class="di" style="resize:vertical;min-height:80px" placeholder="Additional sounds, smells, or behavior…"></textarea>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn btn-p" id="diag-run-btn" onclick="dRunAnalysis()">
+            <span id="diag-btn-txt">🤖 Run AI Analysis</span>
+            <span id="diag-spin" class="spinner-sm" style="display:none"></span>
+          </button>
+          <button class="btn btn-o" onclick="dStep(2)" style="font-size:13px;padding:8px 16px">← Back</button>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="diag-panel hidden" id="dp-4">
+        <div class="diag-panel-title">DIAGNOSTIC RESULTS</div>
+        <div id="diag-result" style="color:#e5e7eb;font-size:14px;line-height:1.8;white-space:pre-wrap"></div>
+        <div class="diag-warn" style="margin-top:16px">
+          <strong>⚠️ Important Notice</strong>
+          AI-generated diagnostics are not guaranteed to be 100% accurate. Always confirm findings with a professional inspection before making repairs.
+        </div>
+        <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn btn-p" onclick="goTo('contact')" style="font-size:13px">📞 Schedule Inspection</button>
+          <button class="btn btn-o" onclick="dReset()" style="font-size:13px;padding:8px 16px">Start Over</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="diag-disabled" class="hidden" style="text-align:center;padding:48px 0;color:#9ca3af">
+      <div style="font-size:48px;margin-bottom:12px">🔧</div>
+      <div style="font-family:var(--fh);font-size:20px;color:#fff;margin-bottom:8px">Diagnostics Temporarily Unavailable</div>
+      <p>Please call us directly for a consultation.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="si">
+    <div class="about-grid">
+      <div>
+        <div class="about-hero-card">
+          <div class="about-hero-card-icon">🛞</div>
+          <div>
+            <strong>2+ Years In Our Community</strong>
+            <p>Thousands of satisfied customers and counting.</p>
+          </div>
+        </div>
+        <div class="trust-badge">
+          <div class="trust-badge-icon">📍</div>
+          <div>
+            <div class="trust-badge-title">Locally Owned &amp; Operated</div>
+            <div class="trust-badge-sub">We're not a chain — your satisfaction matters to us personally.</div>
+          </div>
+        </div>
+        <div class="trust-badge">
+          <div class="trust-badge-icon">⚡</div>
+          <div>
+            <div class="trust-badge-title">Fast, Same-Day Service</div>
+            <div class="trust-badge-sub">Most services completed same day. No long waits.</div>
+          </div>
+        </div>
+        <div class="trust-badge">
+          <div class="trust-badge-icon">🔧</div>
+          <div>
+            <div class="trust-badge-title">Certified Technicians</div>
+            <div class="trust-badge-sub">Every tech is trained, certified, and passionate about getting it right.</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-text">
+        <div class="s-tag">Our Story</div>
+        <h2 id="about-heading">WHY CHOOSE TIREGUY?</h2>
+        <div id="about-body">
+          <p>We started TireGuy Automotive with one goal: to give every driver in this community the kind of honest, fast, and affordable auto care that's hard to find at the big chains.</p>
+          <p>Over the past decade, we've built our reputation one car at a time. From a quick oil change to a complete tire overhaul, we treat every vehicle like it belongs to a family member — because it just might.</p>
+          <p>What sets us apart is our honesty and transparency. We tell you exactly what's wrong and we don't pad the bill with services you don't need. That's our promise.</p>
+          <p>Stop by, give us a call, or use our free diagnostics tool. We're here to help.</p>
+        </div>
+        <div style="margin-top:24px;display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn btn-p" onclick="goTo('contact')">📞 Get In Touch</button>
+          <button class="btn btn-d" onclick="goTo('services')">View Services</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCOUNT -->
+<section id="account-section" class="hidden">
+  <div class="si">
+    <div class="s-tag">Your Profile</div>
+    <h2 class="s-title">My Account</h2>
+    <div id="welcome-banner"></div>
+    <div class="acct-tabs">
+      <button class="acct-tab active" onclick="switchAcctTab('profile')">Profile</button>
+      <button class="acct-tab" onclick="switchAcctTab('history')">Repair History</button>
+    </div>
+    <div class="acct-panel active" id="acct-profile">
+      <div class="acct-box">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
+          <div style="font-family:var(--fh);font-size:18px" id="acct-name-display">—</div>
+          <button class="btn btn-sm btn-ghost" onclick="editProfile()">✏️ Edit</button>
+        </div>
+        <div class="acct-field"><span class="acct-label">Email</span><span class="acct-val" id="acct-email-display">—</span></div>
+        <div class="acct-field"><span class="acct-label">Phone</span><span class="acct-val" id="acct-phone-display">—</span></div>
+        <div class="acct-field"><span class="acct-label">Vehicle</span><span class="acct-val" id="acct-vehicle-display">—</span></div>
+        <div class="acct-field"><span class="acct-label">Last Service</span><span class="acct-val" id="acct-lastrepair-display">—</span></div>
+        <div class="acct-field"><span class="acct-label">Loyalty Tier</span><span class="acct-val" id="acct-loyalty-display">—</span></div>
+        <hr class="divider">
+        <button class="btn btn-sm btn-ghost" onclick="doLogout()" style="width:100%;justify-content:center">Sign Out</button>
+      </div>
+    </div>
+    <div class="acct-panel" id="acct-history">
+      <div class="acct-box acct-box-wide">
+        <div id="repair-history-list"><p style="color:var(--gray);font-size:14px">No repair history on file yet.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section id="community">
+  <div class="si">
+    <div class="s-tag">From the Shop</div>
+    <h2 class="s-title">Community Board</h2>
+    <p class="s-sub">Tips, promotions, and updates straight from our team.</p>
+    <div class="post-grid" id="post-grid"><div class="post-card"><div style="font-size:11px;color:var(--gold);font-weight:700;margin-bottom:6px">📌 PINNED</div><div class="post-cat" style="color:#d4af37">announcement</div><div class="post-title">Welcome to TireGuy Automotive!</div><div class="post-body">Thanks for choosing TireGuy! Check out our services or try our free Diagnostics tool.</div><div class="post-meta">2026-04-06 · TireGuy Team</div></div><div class="post-card"><div class="post-cat" style="color:#22c55e">promotion</div><div class="post-title">Winter Tire Special — 15% Off</div><div class="post-body">Get 15% off all winter tires this month.</div><div class="post-meta">2026-04-06 · TireGuy Team</div></div><div class="post-card"><div class="post-cat" style="color:#3b82f6">tip</div><div class="post-title">How often should I rotate my tires?</div><div class="post-body">Most manufacturers recommend every 5,000–7,500 miles.</div><div class="post-meta">2026-04-06 · TireGuy Team</div></div></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="si">
+    <div class="s-tag">Questions</div>
+    <h2 class="s-title">Frequently Asked</h2>
+    <div id="faq-list"><div class="faq-item"><button class="faq-q" onclick="toggleFAQ(0)">Do you sell and install tires?<span id="fi-0">+</span></button><div class="faq-a" id="fa-0">Yes! We carry a wide selection for all vehicle types. Call ahead or bring your vehicle in for sizing.</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFAQ(1)">How long does a tire rotation take?<span id="fi-1">+</span></button><div class="faq-a" id="fa-1">About 30 minutes. No appointment needed for walk-ins, though calling ahead helps us prepare.</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFAQ(2)">What tire brands do you carry?<span id="fi-2">+</span></button><div class="faq-a" id="fa-2">Michelin, Goodyear, Bridgestone, Cooper, and more. We can also order specific brands on request.</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFAQ(3)">Do you offer warranties on services?<span id="fi-3">+</span></button><div class="faq-a" id="fa-3">Yes — most services include a parts and labor warranty. Ask at time of service for specifics.</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFAQ(4)">How do I create a customer account?<span id="fi-4">+</span></button><div class="faq-a" id="fa-4">Click "My Account" in the navigation to register and track your vehicle history.</div></div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="si">
+    <div class="s-tag">Get In Touch</div>
+    <h2 class="s-title">Contact Us</h2>
+    <p class="s-sub">Have a question? Send us a message and we'll get back to you.</p>
+    <div class="ct-grid">
+      <div>
+        <div class="cinfo"><div class="ci-icon">📍</div><div><div class="ci-lbl">Address</div><div class="ci-val" id="ct-address">107 W. Broadway, Burns, KS 66840</div></div></div>
+        <div class="cinfo"><div class="ci-icon">📞</div><div><div class="ci-lbl">Phone</div><div class="ci-val" id="ct-phone">(620) 726-3160</div></div></div>
+        <div class="cinfo"><div class="ci-icon">📧</div><div><div class="ci-lbl">Email</div><div class="ci-val" id="ct-email">TireGuyAutomotive@gmail.com</div></div></div>
+        <div class="cinfo"><div class="ci-icon">🕐</div><div><div class="ci-lbl">Hours</div><div class="ci-val"><span id="ct-hours-wd">Monday - Friday: 8:30AM - 5PM</span><br><span id="ct-hours-we">Weekends: Closed</span></div></div></div>
+        <div class="social-row" id="social-row"><a href="https://www.facebook.com/tire.guy.141793/" target="_blank" rel="noopener" class="soc-btn" style="background:#1877f2;color:#fff" title="FB">f</a><a href="#" target="_blank" rel="noopener" class="soc-btn" style="background:#e1306c;color:#fff" title="IG">📸</a><a href="#" target="_blank" rel="noopener" class="soc-btn" style="background:#000;color:#fff" title="X">𝕏</a><a href="#" target="_blank" rel="noopener" class="soc-btn" style="background:#ff0000;color:#fff" title="YT">▶</a><a href="#" target="_blank" rel="noopener" class="soc-btn" style="background:#0a66c2;color:#fff" title="LI">in</a><a href="#" target="_blank" rel="noopener" class="soc-btn" style="background:#010101;color:#fff" title="TK">♪</a></div>
+      </div>
+      <form action="https://formsubmit.co/TireGuyAutomotive@gmail.com" method="POST" onsubmit="return saveContactBeforeSubmit()" style="display:flex;flex-direction:column;gap:12px">
+        <!-- FormSubmit.co hidden fields -->
+        <input type="hidden" name="_subject" value="New Contact Form Inquiry">
+        <input type="hidden" name="_next" value="">
+        <input type="hidden" name="_captcha" value="false">
+
+        <!-- Honeypot field for spam protection (invisible to users) -->
+        <div style="position:absolute;top:-9999px;left:-9999px" aria-hidden="true">
+          <label>Leave this empty: <input name="website" type="text"></label>
+        </div>
+
+        <div>
+          <label class="fl-d" style="font-size:10px;color:#9ca3af;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;margin-bottom:4px;display:block">Name *</label>
+          <input class="fi-l" name="name" id="c-name" placeholder="Your name" required="">
+        </div>
+        <div>
+          <label class="fl-d" style="font-size:10px;color:#9ca3af;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;margin-bottom:4px;display:block">Phone</label>
+          <input class="fi-l" name="phone" id="c-phone" placeholder="555-0000">
+        </div>
+        <div>
+          <label class="fl-d" style="font-size:10px;color:#9ca3af;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;margin-bottom:4px;display:block">Email</label>
+          <input class="fi-l" name="email" type="email" id="c-email" placeholder="email@example.com">
+        </div>
+        <div>
+          <label class="fl-d" style="font-size:10px;color:#9ca3af;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;margin-bottom:4px;display:block">Subject</label>
+          <input class="fi-l" name="subject" id="c-subject" placeholder="How can we help?">
+        </div>
+        <div>
+          <label class="fl-d" style="font-size:10px;color:#9ca3af;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;margin-bottom:4px;display:block">Message *</label>
+          <textarea class="fi-l" name="message" id="c-msg" rows="5" placeholder="Tell us what you need…" style="resize:vertical;min-height:110px" required=""></textarea>
+        </div>
+        <button type="submit" class="btn btn-p" style="width:100%;justify-content:center">Send Message →</button>
+        <div style="display:none;margin-top:12px;padding:12px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);border-radius:8px;color:#16a34a;font-size:14px" id="c-success"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-inner">
+    <div class="ft-top">
+      <div>
+        <div class="ft-logo">TIRE<span>GUY</span></div>
+        <p style="font-size:13px;line-height:1.7;max-width:280px" id="ft-tagline">Quality auto care you can trust.</p>
+        <div class="social-row" id="social-row-ft" style="margin-top:14px"><a href="https://www.facebook.com/tire.guy.141793/" target="_blank" rel="noopener" class="soc-btn" style="background:#1877f2;color:#fff" title="FB">f</a><a href="#" target="_blank" rel="noopener" class="soc-btn" style="background:#e1306c;color:#fff" title="IG">📸</a><a href="#" target="_blank" rel="noopener" class="soc-btn" style="background:#000;color:#fff" title="X">𝕏</a><a href="#" target="_blank" rel="noopener" class="soc-btn" style="background:#ff0000;color:#fff" title="YT">▶</a><a href="#" target="_blank" rel="noopener" class="soc-btn" style="background:#0a66c2;color:#fff" title="LI">in</a><a href="#" target="_blank" rel="noopener" class="soc-btn" style="background:#010101;color:#fff" title="TK">♪</a></div>
+      </div>
+      <div class="ft-col"><h4>Services</h4><ul id="ft-services-list"><li onclick="goTo('services')">Tire Rotation</li><li onclick="goTo('services')">Oil Change</li><li onclick="goTo('services')">Brake Service</li><li onclick="goTo('services')">Battery Replacement</li><li onclick="goTo('services')">A/C Service</li><li onclick="goTo('services')">Coolant Flush</li></ul></div>
+      <div class="ft-col"><h4>Quick Links</h4><ul>
+        <li onclick="goTo('services')">Services</li>
+        <li onclick="goTo('about')">About Us</li>
+        <li onclick="openAccountArea()">My Account</li>
+        <li onclick="goTo('faq')">FAQ</li>
+        <li onclick="goTo('contact')">Contact</li>
+      </ul></div>
+      <div class="ft-col"><h4>Hours</h4><ul>
+        <li id="ft-hours-wd">Monday - Friday: 8:30AM - 5PM</li>
+        <li id="ft-hours-we">Weekends: Closed</li>
+        <li>Sun: Closed</li>
+      </ul></div>
+    </div>
+    <div class="ft-bottom">
+      <span id="ft-copy">© 2026 TireGuy Automotive. All rights reserved.</span>
+      <span>Locally owned &amp; operated.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- BELL -->
+<div id="bell" onclick="toggleBell()">🔔<span id="bell-count"></span></div>
+<div id="bell-panel">
+  <div class="bp-head">Notifications <span style="cursor:pointer;opacity:.6" onclick="toggleBell()">✕</span></div>
+  <div class="bp-body" id="bp-body"><div style="text-align:center;padding:16px;color:var(--gray);font-size:13px">Sign in to view notifications.</div></div>
+</div>
+
+<!-- AUTH MODAL -->
+<div id="auth-modal" class="auth-modal-bg hidden">
+  <div class="auth-modal-box">
+    <button class="auth-modal-close" onclick="closeAuthModal()">✕</button>
+    <div class="auth-modal-title">My Account</div>
+    <div class="modal-tabs">
+      <button class="modal-tab active" onclick="switchAuthTab('login')" id="tab-login">Sign In</button>
+      <button class="modal-tab" onclick="switchAuthTab('register')" id="tab-register">Create Account</button>
+    </div>
+    <div id="auth-login">
+      <div class="fg" style="margin-bottom:12px"><label class="fl-d">Email</label><input class="fi-m" id="l-email" type="email" placeholder="your@email.com"></div>
+      <div class="fg" style="margin-bottom:12px"><label class="fl-d">Password</label><input class="fi-m" id="l-pass" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"></div>
+      <div class="err-box" id="l-err"></div>
+      <button class="btn btn-p" style="width:100%;justify-content:center;margin-top:8px" onclick="doLogin()">Sign In →</button>
+    </div>
+    <div id="auth-register" class="hidden">
+      <div class="fg" style="margin-bottom:10px"><label class="fl-d">Full Name *</label><input class="fi-m" id="r-name" placeholder="Your full name"></div>
+      <div class="fg" style="margin-bottom:10px"><label class="fl-d">Email *</label><input class="fi-m" id="r-email" type="email" placeholder="your@email.com"></div>
+      <div class="fg" style="margin-bottom:10px"><label class="fl-d">Phone</label><input class="fi-m" id="r-phone" placeholder="555-0000"></div>
+      <div class="fg" style="margin-bottom:10px"><label class="fl-d">Vehicle (Year Make Model)</label><input class="fi-m" id="r-vehicle" placeholder="2020 Honda Civic"></div>
+      <div class="fg" style="margin-bottom:10px"><label class="fl-d">Password *</label><input class="fi-m" id="r-pass" type="password" placeholder="Min 6 characters"></div>
+      <div class="err-box" id="r-err"></div>
+      <button class="btn btn-p" style="width:100%;justify-content:center;margin-top:8px" onclick="doRegister()">Create Account →</button>
+    </div>
+  </div>
+</div>
+
+<!-- EDIT PROFILE MODAL -->
+<div id="edit-modal" class="auth-modal-bg hidden">
+  <div class="auth-modal-box">
+    <button class="auth-modal-close" onclick="document.getElementById('edit-modal').classList.add('hidden')">✕</button>
+    <div class="auth-modal-title">Edit Profile</div>
+    <div class="fg" style="margin-bottom:10px"><label class="fl-d">Full Name</label><input class="fi-m" id="ep-name" placeholder="Your name"></div>
+    <div class="fg" style="margin-bottom:10px"><label class="fl-d">Phone</label><input class="fi-m" id="ep-phone" placeholder="555-0000"></div>
+    <div class="fg" style="margin-bottom:10px"><label class="fl-d">Vehicle</label><input class="fi-m" id="ep-vehicle" placeholder="2020 Honda Civic"></div>
+    <div class="fg" style="margin-bottom:10px"><label class="fl-d">New Password (leave blank to keep)</label><input class="fi-m" id="ep-pass" type="password" placeholder="New password…"></div>
+    <div class="err-box" id="ep-err"></div>
+    <div style="display:flex;gap:10px;margin-top:12px">
+      <button class="btn btn-p" style="flex:1;justify-content:center" onclick="saveProfile()">Save Changes</button>
+      <button class="btn btn-ghost" onclick="document.getElementById('edit-modal').classList.add('hidden')">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICE DETAIL MODAL -->
+<div id="svc-modal" class="modal-bg hidden" onclick="if(event.target===this)closeSvcModal()">
+  <div class="svc-modal-box">
+    <button class="modal-close-btn" onclick="closeSvcModal()">✕</button>
+    <div style="font-size:40px;margin-bottom:12px" id="sm-icon">🔧</div>
+    <div style="font-family:var(--fh);font-size:26px;letter-spacing:.5px;margin-bottom:8px" id="sm-name">Service</div>
+    <div style="font-size:13px;color:var(--gray);margin-bottom:14px" id="sm-dur">⏱ Time estimate</div>
+    <div style="font-size:14px;color:var(--gray);line-height:1.7;border-top:1px solid var(--border);padding-top:14px;margin-bottom:20px" id="sm-desc">Description.</div>
+    <button class="btn btn-p" style="width:100%;justify-content:center;font-size:15px;padding:14px" onclick="goTo('contact');closeSvcModal()">📞 Schedule This Service</button>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════
+// DB
+// ══════════════════════════════════════════
+const DB={
+  get(k){try{return JSON.parse(localStorage.getItem('tg_'+k)||'null')}catch{return null}},
+  set(k,v){localStorage.setItem('tg_'+k,JSON.stringify(v))},
+  getList(k){return this.get(k)||[]},
+  setList(k,a){this.set(k,a)},
+  nextId(k){const n=(this.get('__id_'+k)||0)+1;this.set('__id_'+k,n);return n},
+  all(t){return this.getList(t)},
+  find(t,id){return this.all(t).find(r=>r.id===id)||null},
+  insert(t,r){const l=this.all(t);const row={...r,id:this.nextId(t),created_at:new Date().toISOString()};l.push(row);this.setList(t,l);return row},
+  update(t,id,c){this.setList(t,this.all(t).map(r=>r.id===id?{...r,...c,updated_at:new Date().toISOString()}:r))},
+  where(t,fn){return this.all(t).filter(fn)},
+  findCustomerByEmail(e){return this.where('customers',c=>c.email&&c.email.toLowerCase()===e.toLowerCase())[0]||null},
+  findCustomerAccount(e){return this.where('customer_accounts',a=>a.email&&a.email.toLowerCase()===e.toLowerCase())[0]||null},
+  getRepairHistory(e){return this.where('repair_history',h=>h.customer_email&&h.customer_email.toLowerCase()===e.toLowerCase()).sort((a,b)=>new Date(b.date||b.created_at)-new Date(a.date||a.created_at))},
+};
+
+function getSettings(){
+  return DB.get('site_settings')||{
+    shop_name:'TireGuy Automotive',address:'107 W. Broadway, Burns, KS 66840',
+    phone:'(620) 726-3160',email:'TireGuyAutomotive@gmail.com',
+    hours_weekday:'Monday - Friday: 8:30AM - 5PM',hours_weekend:'Weekends: Closed',
+    facebook:'https://www.facebook.com/tire.guy.141793/',instagram:'#',twitter:'#',youtube:'#',linkedin:'#',tiktok:'#',
+    show_ai_diagnostics:true,show_community:true,
+    hero_headline:'TIRES & AUTO CARE <em>DONE RIGHT</em>',
+    hero_sub:'Fast, reliable service from technicians who actually care.',
+    tagline:'Quality auto care you can trust.',
+    about_heading:'WHY CHOOSE TIREGUY?',
+    about_body:'',
+  };
+}
+
+const DEFAULT_SERVICES=[
+  {icon:'🛞',name:'Tire Rotation',desc:'Extend tire life and maintain even tread wear across all four wheels.',dur:'~30 min'},
+  {icon:'🔧',name:'Oil Change',desc:'Full synthetic or conventional oil change with filter replacement and top-off.',dur:'~30–45 min'},
+  {icon:'🛑',name:'Brake Service',desc:'Pad replacement, rotor inspection, and caliper check for all wheel positions.',dur:'~1–2 hours'},
+  {icon:'🔋',name:'Battery Replacement',desc:'Battery testing, replacement, and terminal cleaning to keep you starting every time.',dur:'~30 min'},
+  {icon:'❄️',name:'A/C Service',desc:'Refrigerant recharge, leak check, and system performance test.',dur:'~1 hour'},
+  {icon:'🌡️',name:'Coolant Flush',desc:'Drain old coolant, flush the system, and refill with fresh antifreeze.',dur:'~1 hour'},
+  {icon:'🔍',name:'Vehicle Inspection',desc:'Comprehensive multi-point inspection covering all major systems.',dur:'~45 min'},
+  {icon:'⚙️',name:'Wheel Alignment',desc:'Computer-aided alignment to manufacturer specs for better handling and tire life.',dur:'~1 hour'},
+  {icon:'🛻',name:'Tire Mounting & Balancing',desc:'Professional mounting and precision balancing for a smooth, vibration-free ride.',dur:'~45 min'},
+  {icon:'🚗',name:'Full Tire Package',desc:'4 new tires, mounted, balanced, and aligned. Brand and size selection available.',dur:'~2 hours'},
+];
+
+function getServices(){
+  const admin=DB.all('services');
+  if(admin.length>0) return admin.map(s=>({
+    icon:s.icon||'🔧',name:s.name,
+    desc:s.description||s.desc||'',
+    dur:s.time_estimate||s.dur||'Varies',
+  }));
+  return DEFAULT_SERVICES;
+}
+
+// ══════════════════════════════════════════
+// SERVER SYNC — fetch authoritative data
+// ══════════════════════════════════════════
+const API_SYNC={
+  _ready:false,
+  async fetchServerServices(){
+    try{
+      const r=await fetch('/api/site/services');
+      if(r.ok){const d=await r.json();this._ready=true;return d.services||[];}
+    }catch{}
+    return[];
+  },
+  async fetchServerSettings(){
+    try{
+      const r=await fetch('/api/site/settings');
+      if(r.ok){const d=await r.json();this._ready=true;return d.settings||{};}
+    }catch{}
+    return{};
+  },
+  async fetchServerCommunity(){
+    try{
+      const r=await fetch('/api/site/community');
+      if(r.ok){const d=await r.json();return d.posts||[];}
+    }catch{}
+    return[];
+  },
+  async fetchServerFaqs(){
+    try{
+      const r=await fetch('/api/site/faqs');
+      if(r.ok){const d=await r.json();return d.faqs||[];}
+    }catch{}
+    return[];
+  },
+  async init(){
+    const[svc,sets,posts,serverFaqs]=await Promise.all([
+      this.fetchServerServices(),
+      this.fetchServerSettings(),
+      this.fetchServerCommunity(),
+      this.fetchServerFaqs()
+    ]);
+    if(svc.length>0||sets&&Object.keys(sets).length>0) this._ready=true;
+    if(svc.length>0) DB.setList('services',svc);
+    if(sets&&Object.keys(sets).length>0){
+      const cur=DB.get('site_settings')||{};
+      DB.set('site_settings',{...cur,...sets});
+    }
+    if(posts.length>0){
+      DB.setList('community',posts);
+    }
+    if(serverFaqs.length>0){
+      window._serverFaqs=serverFaqs;
+    }
+  },
+  onSync(){
+    this.fetchServerServices().then(svc=>{
+      if(svc.length>0) DB.setList('services',svc);
+    });
+    this.fetchServerSettings().then(sets=>{
+      if(sets&&Object.keys(sets).length>0) DB.set('site_settings',sets);
+    });
+    this.fetchServerCommunity().then(posts=>{
+      if(posts.length>0) DB.setList('community',posts);
+    });
+    this.fetchServerFaqs().then(serverFaqs=>{
+      if(serverFaqs.length>0) window._serverFaqs=serverFaqs;
+    });
+  }
+};
+
+const FAQS=[
+  ['Do you sell and install tires?','Yes! We carry a wide selection for all vehicle types. Call ahead or bring your vehicle in for sizing.'],
+  ['How long does a tire rotation take?','About 30 minutes. No appointment needed for walk-ins, though calling ahead helps us prepare.'],
+  ['What tire brands do you carry?','Michelin, Goodyear, Bridgestone, Cooper, and more. We can also order specific brands on request.'],
+  ['Do you offer warranties on services?','Yes — most services include a parts and labor warranty. Ask at time of service for specifics.'],
+  ['How do I create a customer account?','Click "My Account" in the navigation to register and track your vehicle history.'],
+];
+
+// SEED
+if(!DB.get('__seeded_v3')){
+  [{title:'Welcome to TireGuy Automotive!',content:'Thanks for choosing TireGuy! Check out our services or try our free Diagnostics tool.',category:'announcement',pinned:true,author:'TireGuy Team'},{title:'Winter Tire Special — 15% Off',content:'Get 15% off all winter tires this month.',category:'promotion',pinned:false,author:'TireGuy Team'},{title:'How often should I rotate my tires?',content:'Most manufacturers recommend every 5,000–7,500 miles.',category:'tip',pinned:false,author:'TireGuy Team'}].forEach(r=>DB.insert('community',r));
+  DB.set('__seeded_v3',true);
+}
+
+// INIT
+window.addEventListener('DOMContentLoaded', async ()=>{
+  await API_SYNC.init();
+  applySettings();
+  renderServicesHome();
+  renderServicesAll();
+  renderCommunity();
+  renderFAQ();
+  checkSessionAndInit();
+  try{
+    const bc=new BroadcastChannel('tireguy_sync');
+    bc.onmessage=()=>{API_SYNC.onSync();setTimeout(()=>{applySettings();renderServicesHome();renderServicesAll();renderCommunity();renderFAQ();},200);};
+  }catch{}
+  setInterval(()=>API_SYNC.onSync().then(()=>{applySettings();renderServicesHome();renderServicesAll();renderCommunity();renderFAQ();}),5000);
+});
+
+function applySettings(){
+  const s=getSettings();
+  document.getElementById('hero-headline').innerHTML=s.hero_headline||'TIRES &amp; AUTO CARE <em>DONE RIGHT</em>';
+  document.getElementById('hero-sub').textContent=s.hero_sub||'';
+  document.getElementById('ct-address').textContent=s.address||'';
+  document.getElementById('ct-phone').textContent=s.phone||'';
+  document.getElementById('ct-email').textContent=s.email||'';
+  document.getElementById('ct-hours-wd').textContent=s.hours_weekday||'';
+  document.getElementById('ct-hours-we').textContent=s.hours_weekend||'';
+  document.getElementById('ft-hours-wd').textContent=s.hours_weekday||'';
+  document.getElementById('ft-hours-we').textContent=s.hours_weekend||'';
+  document.getElementById('ft-tagline').textContent=s.tagline||'Quality auto care you can trust.';
+  document.getElementById('ft-copy').textContent='© '+new Date().getFullYear()+' '+(s.shop_name||'TireGuy Automotive')+'. All rights reserved.';
+  document.title=(s.shop_name||'TireGuy Automotive')+' — Quality You Can Feel';
+  if(s.about_heading) document.getElementById('about-heading').innerHTML=s.about_heading;
+  if(s.about_body&&s.about_body.trim()) document.getElementById('about-body').innerHTML=s.about_body;
+
+  const socials=[{key:'facebook',icon:'f',bg:'#1877f2',label:'FB'},{key:'instagram',icon:'📸',bg:'#e1306c',label:'IG'},{key:'twitter',icon:'𝕏',bg:'#000',label:'X'},{key:'youtube',icon:'▶',bg:'#ff0000',label:'YT'},{key:'linkedin',icon:'in',bg:'#0a66c2',label:'LI'},{key:'tiktok',icon:'♪',bg:'#010101',label:'TK'}];
+  ['social-row','social-row-ft'].forEach(id=>{
+    const el=document.getElementById(id);if(!el)return;
+    el.innerHTML=socials.map(sc=>`<a href="${s[sc.key]||'#'}" target="_blank" rel="noopener" class="soc-btn" style="background:${sc.bg};color:#fff" title="${sc.label}">${sc.icon}</a>`).join('');
+  });
+
+  const diagTool=document.getElementById('diag-tool');
+  const diagDis=document.getElementById('diag-disabled');
+  if(s.show_ai_diagnostics===false){diagTool.classList.add('hidden');diagDis.classList.remove('hidden');}
+  else{diagTool.classList.remove('hidden');diagDis.classList.add('hidden');}
+  if(s.show_community===false) document.getElementById('community').classList.add('hidden');
+  else document.getElementById('community').classList.remove('hidden');
+}
+
+// SERVICES
+function buildCard(s){
+  const esc=v=>v.replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'&quot;');
+  return `<div class="svc-card" onclick="openSvcModal('${esc(s.icon||'🔧')}','${esc(s.name)}','${esc(s.dur)}','${esc(s.desc)}')">
+    <div class="svc-icon">${s.icon||'🔧'}</div>
+    <div class="svc-name">${s.name}</div>
+    <div class="svc-desc">${s.desc}</div>
+    <div class="svc-dur">⏱ ${s.dur}</div>
+    <div class="svc-arrow">Tap for details →</div>
+  </div>`;
+}
+
+function renderServicesHome(){
+  const svcs=getServices();
+  document.getElementById('svc-grid-home').innerHTML=svcs.slice(0,6).map(buildCard).join('');
+  document.getElementById('ft-services-list').innerHTML=svcs.slice(0,6).map(s=>`<li onclick="goTo('services')">${s.name}</li>`).join('');
+}
+function renderServicesAll(){
+  document.getElementById('svc-grid-all').innerHTML=getServices().map(buildCard).join('');
+}
+
+function showAllServices(){
+  document.getElementById('services').classList.add('hidden');
+  document.getElementById('all-services').classList.remove('hidden');
+  window.scrollTo({top:document.getElementById('all-services').offsetTop-70,behavior:'smooth'});
+}
+function hideAllServices(){
+  document.getElementById('all-services').classList.add('hidden');
+  document.getElementById('services').classList.remove('hidden');
+  document.getElementById('services').scrollIntoView({behavior:'smooth'});
+}
+
+function openSvcModal(icon,name,dur,desc){
+  document.getElementById('sm-icon').textContent=icon;
+  document.getElementById('sm-name').textContent=name;
+  document.getElementById('sm-dur').textContent='⏱ '+dur;
+  document.getElementById('sm-desc').textContent=desc;
+  document.getElementById('svc-modal').classList.remove('hidden');
+  document.body.style.overflow='hidden';
+}
+function closeSvcModal(){
+  document.getElementById('svc-modal').classList.add('hidden');
+  document.body.style.overflow='';
+}
+
+// COMMUNITY
+function renderCommunity(){
+  const posts=DB.all('community').sort((a,b)=>(b.pinned?1:0)-(a.pinned?1:0));
+  const colors={announcement:'#d4af37',promotion:'#22c55e',tip:'#3b82f6',general:'#9ca3af'};
+  document.getElementById('post-grid').innerHTML=posts.length
+    ?posts.map(p=>`<div class="post-card">${p.pinned?'<div style="font-size:11px;color:var(--gold);font-weight:700;margin-bottom:6px">📌 PINNED</div>':''}<div class="post-cat" style="color:${colors[p.category]||'#6b7280'}">${p.category}</div><div class="post-title">${p.title}</div><div class="post-body">${p.content||''}</div><div class="post-meta">${(p.created_at||'').split('T')[0]} · ${p.author||'TireGuy Team'}</div></div>`).join('')
+    :'<p style="color:var(--gray);font-size:14px">No posts yet.</p>';
+}
+
+// FAQ — use server FAQs if available, fall back to hardcoded defaults
+function renderFAQ(){
+  const serverFaqs=window._serverFaqs||[];
+  if(serverFaqs.length>0){
+    document.getElementById('faq-list').innerHTML=serverFaqs.map((f,i)=>`<div class="faq-item"><button class="faq-q" onclick="toggleFAQ(${i})">${f.question||''}<span id="fi-${i}">+</span></button><div class="faq-a" id="fa-${i}">${f.answer||''}</div></div>`).join('');
+  } else {
+    document.getElementById('faq-list').innerHTML=FAQS.map((f,i)=>`<div class="faq-item"><button class="faq-q" onclick="toggleFAQ(${i})">${f[0]}<span id="fi-${i}">+</span></button><div class="faq-a" id="fa-${i}">${f[1]}</div></div>`).join('');
+  }
+}
+function toggleFAQ(i){const a=document.getElementById('fa-'+i),ic=document.getElementById('fi-'+i);const o=a.classList.toggle('open');ic.textContent=o?'−':'+';}
+
+// DIAGNOSTICS
+let dSyms=[],dStep_cur=1;
+
+function dStep(n){
+  [1,2,3,4].forEach(s=>{
+    document.getElementById('dp-'+s)?.classList.add('hidden');
+    const b=document.getElementById('dsb-'+s);
+    b.classList.remove('active','done');
+    if(s<n)b.classList.add('done');
+    else if(s===n)b.classList.add('active');
+  });
+  document.getElementById('dp-'+n)?.classList.remove('hidden');
+  document.getElementById('diag-bar').style.width=(n/4*100)+'%';
+  dStep_cur=n;
+}
+
+function tSym(el){
+  el.classList.toggle('on');
+  const s=el.dataset.sym;
+  if(el.classList.contains('on')){if(!dSyms.includes(s))dSyms.push(s);}
+  else{dSyms=dSyms.filter(x=>x!==s);}
+}
+
+function dNext(step){
+  if(step===1){if(!document.getElementById('dv-vehicle').value.trim()){alert('Please enter your vehicle year, make & model.');return;}dStep(2);}
+  else if(step===2){if(!dSyms.length){alert('Please select at least one symptom.');return;}dStep(3);}
+}
+
+async function dRunAnalysis(){
+  const vehicle=document.getElementById('dv-vehicle').value.trim();
+  const mileage=document.getElementById('dv-mileage').value.trim();
+  const when=document.getElementById('dv-when').value;
+  const extra=document.getElementById('dv-extra').value.trim();
+  document.getElementById('diag-btn-txt').textContent='Analyzing…';
+  document.getElementById('diag-spin').style.display='inline-block';
+
+  const prompt=`You are an expert automotive diagnostic assistant.\n\nVehicle: ${vehicle}\nMileage: ${mileage||'Not specified'}\nSymptoms: ${dSyms.join(', ')}\nStarted: ${when}\nAdditional: ${extra||'None'}\n\nProvide a concise, friendly analysis:\n1. MOST LIKELY CAUSE(S)\n2. SEVERITY (Low/Medium/High/Critical)\n3. RECOMMENDED SERVICE\n4. ESTIMATED COST RANGE\n5. SAFE TO DRIVE? (Yes/No/With caution)\n6. IMMEDIATE NEXT STEP\n\nUse plain language a non-mechanic can understand. Be brief and practical.`;
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:700,messages:[{role:'user',content:prompt}]})});
+    const data=await res.json();
+    document.getElementById('diag-result').textContent=data.content?.map(b=>b.text||'').join('')||'Unable to process. Please call us.';
+  }catch{
+    document.getElementById('diag-result').textContent='Diagnostic service temporarily unavailable. Please call or stop by and our technicians will help you directly.';
+  }
+  document.getElementById('diag-btn-txt').textContent='🤖 Run AI Analysis';
+  document.getElementById('diag-spin').style.display='none';
+  dStep(4);
+}
+
+function dReset(){
+  dSyms=[];dStep_cur=1;
+  document.getElementById('dv-vehicle').value='';
+  document.getElementById('dv-mileage').value='';
+  document.getElementById('dv-extra').value='';
+  document.querySelectorAll('.sym-tag').forEach(t=>t.classList.remove('on'));
+  dStep(1);
+}
+
+// CONTACT
+// CONTACT - FormSubmit.co version
+// This function saves to localStorage as backup before the form submits to FormSubmit.co
+function saveContactBeforeSubmit(){
+  const name=document.getElementById('c-name').value.trim();
+  const phone=document.getElementById('c-phone').value.trim();
+  const email=document.getElementById('c-email').value.trim();
+  const subject=document.getElementById('c-subject').value.trim();
+  const msg=document.getElementById('c-msg').value.trim();
+
+  if(!name||!msg){
+    alert('Name and message are required.');
+    return false;
+  }
+
+  // Save to local storage (backup)
+  DB.insert('contact_inquiries',{
+    name,phone,email,subject,message:msg,status:'new',
+    notified_at:new Date().toISOString(),
+    submission_method:'formsubmit'
+  });
+
+  // Return true to allow natural form submission to FormSubmit.co
+  return true;
+}
+
+// AUTH
+let currentCustomer=null;
+
+function checkSessionAndInit(){
+  const saved=localStorage.getItem('tg_cust_session');
+  if(saved){const a=DB.findCustomerAccount(saved);if(a){currentCustomer=a;showAccountSection();return;}}
+  hideAccountSection();
+}
+function openAccountArea(){if(currentCustomer){goTo('account-section');return;}document.getElementById('auth-modal').classList.remove('hidden');}
+function closeAuthModal(){document.getElementById('auth-modal').classList.add('hidden');}
+function switchAuthTab(t){['login','register'].forEach(x=>{document.getElementById('auth-'+x).classList.toggle('hidden',x!==t);document.getElementById('tab-'+x).classList.toggle('active',x===t);});}
+
+function doLogin(){
+  const email=document.getElementById('l-email').value.trim().toLowerCase();
+  const pass=document.getElementById('l-pass').value;
+  const err=document.getElementById('l-err');
+  if(!email||!pass){err.textContent='Email and password required.';return;}
+  const a=DB.findCustomerAccount(email);
+  if(!a||a.password!==pass){err.textContent='Invalid email or password.';return;}
+  err.textContent='';currentCustomer=a;
+  localStorage.setItem('tg_cust_session',email);
+  closeAuthModal();showAccountSection();goTo('account-section');
+}
+
+function doRegister(){
+  const name=document.getElementById('r-name').value.trim();
+  const email=document.getElementById('r-email').value.trim().toLowerCase();
+  const phone=document.getElementById('r-phone').value.trim();
+  const vehicle=document.getElementById('r-vehicle').value.trim();
+  const pass=document.getElementById('r-pass').value;
+  const err=document.getElementById('r-err');
+  if(!name||!email||!pass){err.textContent='Name, email, and password required.';return;}
+  if(pass.length<6){err.textContent='Password must be at least 6 characters.';return;}
+  if(DB.findCustomerAccount(email)){err.textContent='An account with that email already exists.';return;}
+  const a=DB.insert('customer_accounts',{name,email,phone,vehicle_type:vehicle,password:pass});
+  if(!DB.findCustomerByEmail(email)) DB.insert('customers',{name,phone,email,vehicle_type:vehicle,loyalty_tier:'Bronze',loyalty_points:0,last_repair:''});
+  currentCustomer=a;localStorage.setItem('tg_cust_session',email);
+  closeAuthModal();showAccountSection();goTo('account-section');
+}
+
+function doLogout(){currentCustomer=null;localStorage.removeItem('tg_cust_session');hideAccountSection();goTo('home');}
+
+function showAccountSection(){
+  document.getElementById('account-section').classList.remove('hidden');
+  document.getElementById('nav-account-link').textContent='👤 '+currentCustomer.name.split(' ')[0];
+  refreshAccountDisplay();refreshRepairHistory();showWelcomeBanner();updateBell();
+}
+function hideAccountSection(){
+  document.getElementById('account-section').classList.add('hidden');
+  document.getElementById('nav-account-link').textContent='My Account';
+}
+
+function showWelcomeBanner(){
+  if(!currentCustomer)return;
+  const cust=DB.findCustomerByEmail(currentCustomer.email)||{};
+  const isReturn=cust.last_repair||cust.loyalty_points>0;
+  document.getElementById('welcome-banner').innerHTML=`<div class="welcome-banner">
+    <div class="welcome-banner-icon">${isReturn?'👋':'🎉'}</div>
+    <div>
+      <h3>${isReturn?'Welcome back, ':'Welcome, '}${currentCustomer.name.split(' ')[0]}!</h3>
+      <p>${isReturn?(cust.vehicle_type?`Your ${cust.vehicle_type} is on file. `:'')+( cust.last_repair?`Last service: ${cust.last_repair}.`:''): 'Your account is all set. We look forward to serving you.'}</p>
+    </div>
+  </div>`;
+}
+
+function refreshAccountDisplay(){
+  if(!currentCustomer)return;
+  const a=DB.findCustomerAccount(currentCustomer.email)||currentCustomer;
+  const c=DB.findCustomerByEmail(currentCustomer.email)||{};
+  document.getElementById('acct-name-display').textContent=a.name||'—';
+  document.getElementById('acct-email-display').textContent=a.email||'—';
+  document.getElementById('acct-phone-display').textContent=a.phone||'—';
+  document.getElementById('acct-vehicle-display').textContent=a.vehicle_type||c.vehicle_type||'—';
+  document.getElementById('acct-lastrepair-display').textContent=c.last_repair||'—';
+  const tier=c.loyalty_tier||'Bronze';
+  const cols={Gold:'#eab308',Silver:'#9ca3af',Bronze:'#cd7c2a'};
+  document.getElementById('acct-loyalty-display').innerHTML=`<span style="color:${cols[tier]}">${tier} — ${c.loyalty_points||0} pts</span>`;
+}
+
+function refreshRepairHistory(){
+  if(!currentCustomer)return;
+  const h=DB.getRepairHistory(currentCustomer.email);
+  const el=document.getElementById('repair-history-list');
+  if(!h.length){el.innerHTML='<p style="color:var(--gray);font-size:14px">No repair history on file yet.</p>';return;}
+  el.innerHTML=h.map(r=>`<div class="repair-item"><div class="repair-date">${(r.date||r.created_at||'').split('T')[0]}</div><div class="repair-svc">${r.service||'Service'}</div><div class="repair-veh">${r.vehicle||r.vehicle_type||''}</div>${r.notes?`<div style="font-size:12px;color:var(--gray);margin-top:4px">${r.notes}</div>`:''}</div>`).join('');
+}
+
+function switchAcctTab(t){
+  document.querySelectorAll('.acct-tab').forEach((x,i)=>x.classList.toggle('active',['profile','history'][i]===t));
+  document.querySelectorAll('.acct-panel').forEach((p,i)=>p.classList.toggle('active',['acct-profile','acct-history'][i]==='acct-'+t));
+  if(t==='history')refreshRepairHistory();
+}
+
+function editProfile(){
+  if(!currentCustomer)return;
+  document.getElementById('ep-name').value=currentCustomer.name||'';
+  document.getElementById('ep-phone').value=currentCustomer.phone||'';
+  document.getElementById('ep-vehicle').value=currentCustomer.vehicle_type||'';
+  document.getElementById('ep-pass').value='';
+  document.getElementById('edit-modal').classList.remove('hidden');
+}
+
+function saveProfile(){
+  const name=document.getElementById('ep-name').value.trim();
+  const phone=document.getElementById('ep-phone').value.trim();
+  const vehicle=document.getElementById('ep-vehicle').value.trim();
+  const pass=document.getElementById('ep-pass').value;
+  const err=document.getElementById('ep-err');
+  if(!name){err.textContent='Name required.';return;}
+  err.textContent='';
+  const ch={name,phone,vehicle_type:vehicle};
+  if(pass.length>0&&pass.length<6){err.textContent='Password must be at least 6 characters.';return;}
+  if(pass.length>=6)ch.password=pass;
+  DB.update('customer_accounts',currentCustomer.id,ch);
+  const c=DB.findCustomerByEmail(currentCustomer.email);
+  if(c)DB.update('customers',c.id,{name,phone,vehicle_type:vehicle});
+  currentCustomer={...currentCustomer,...ch};
+  document.getElementById('edit-modal').classList.add('hidden');
+  showAccountSection();
+}
+
+// BELL
+function toggleBell(){document.getElementById('bell-panel').classList.toggle('open');}
+function updateBell(){
+  if(!currentCustomer)return;
+  const notifs=DB.where('notifications',n=>n.target==='customer'&&n.customer_email&&n.customer_email.toLowerCase()===currentCustomer.email.toLowerCase());
+  const unread=notifs.filter(n=>!n.is_read).length;
+  const cnt=document.getElementById('bell-count');cnt.textContent=unread;cnt.style.display=unread?'block':'none';
+  const body=document.getElementById('bp-body');
+  if(!notifs.length){body.innerHTML='<div style="text-align:center;padding:16px;color:var(--gray);font-size:13px">No notifications yet.</div>';return;}
+  body.innerHTML=notifs.slice().reverse().slice(0,10).map(n=>`<div class="bp-item"><div class="bp-title">${n.title}</div><div class="bp-sub">${n.message||''}</div></div>`).join('');
+}
+
+// NAV
+function goTo(id){
+  const el=document.getElementById(id);
+  if(!el)return;
+  el.scrollIntoView({behavior:'smooth',block:'start'});
+  ['home','services','diagnostics','about','contact'].forEach(l=>{
+    const lel=document.getElementById('nl-'+l);
+    if(lel)lel.classList.toggle('active',l===id);
+  });
+  closeMenu();
+}
+function toggleMenu(){document.getElementById('mmenu').classList.toggle('open')}
+function closeMenu(){document.getElementById('mmenu').classList.remove('open')}
+</script>
+<script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;a6c8403c691049c99c4a23ab151d7435&quot;,&quot;r&quot;:1,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}" crossorigin="anonymous"></script>
+
+
+
+
+<script>
+// Cloudflare live backend adapter added by ChatGPT.
+// Keeps the uploaded customer design, but sends contact/diagnostic activity to Cloudflare Pages Functions/KV.
+(function(){
+  async function postJson(url, payload){
+    const res = await fetch(url, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload)});
+    let data = {};
+    try { data = await res.json(); } catch {}
+    if(!res.ok) throw new Error(data.error || 'Request failed');
+    return data;
+  }
+
+  function setSuccess(msg){
+    const box=document.getElementById('c-success');
+    if(box){ box.style.display='block'; box.textContent=msg; }
+  }
+
+  window.saveContactBeforeSubmit = function(){
+    const name=document.getElementById('c-name')?.value.trim() || '';
+    const phone=document.getElementById('c-phone')?.value.trim() || '';
+    const email=document.getElementById('c-email')?.value.trim() || '';
+    const subject=document.getElementById('c-subject')?.value.trim() || '';
+    const message=document.getElementById('c-msg')?.value.trim() || '';
+    if(!name || !message){ alert('Name and message are required.'); return false; }
+    const payload={name,phone,email,subject,message,status:'new',submission_method:'cloudflare'};
+    postJson('/api/contact', payload)
+      .then(()=>{
+        try{ DB.insert('contact_inquiries', payload); }catch{}
+        setSuccess('Message sent. We will get back to you soon.');
+        ['c-name','c-phone','c-email','c-subject','c-msg'].forEach(id=>{const el=document.getElementById(id); if(el) el.value='';});
+      })
+      .catch(()=>{
+        try{ DB.insert('contact_inquiries', {...payload, submission_method:'local-backup'}); }catch{}
+        setSuccess('Message saved locally. If this is urgent, please call TireGuy directly.');
+      });
+    return false;
+  };
+
+  window.dRunAnalysis = async function(){
+    const vehicle=document.getElementById('dv-vehicle')?.value.trim() || '';
+    const mileage=document.getElementById('dv-mileage')?.value.trim() || '';
+    const when=document.getElementById('dv-when')?.value || '';
+    const extra=document.getElementById('dv-extra')?.value.trim() || '';
+    const symptoms = Array.isArray(window.dSyms) ? window.dSyms : (typeof dSyms !== 'undefined' ? dSyms : []);
+    const txt=document.getElementById('diag-btn-txt');
+    const spin=document.getElementById('diag-spin');
+    if(txt) txt.textContent='Analyzing…';
+    if(spin) spin.style.display='inline-block';
+
+    const symptomText = symptoms.join(', ') || 'No symptoms selected';
+    const resultEl=document.getElementById('diag-result');
+
+    try{
+      // Send to backend — if OpenRouter key is configured, returns real AI result
+      const res=await postJson('/api/diagnostics', {vehicle,mileage,symptoms:symptomText,when,extra});
+      if(res.result && resultEl) resultEl.textContent=res.result;
+      if(res.ai_powered && resultEl){
+        resultEl.setAttribute('data-ai','1');
+      }
+    } catch {
+      // Fallback: local keyword analysis if server call fails
+      const joined=(symptomText+' '+extra).toLowerCase();
+      let likely='A technician should inspect the related system and confirm the exact cause.';
+      let severity='Medium'; let safe='With caution'; let service='Vehicle Inspection'; let cost='Inspection required for accurate estimate.';
+      if(joined.includes('overheat')||joined.includes('smoke')||joined.includes('brake')||joined.includes("won't start")){severity='High';safe='No / only if absolutely necessary';}
+      if(joined.includes('brake')){likely='Brake pads, rotors, calipers, brake fluid, or hydraulic brake components may need attention.';service='Brake Service';cost='Varies by parts and labor after inspection.';}
+      else if(joined.includes('tire')||joined.includes('pressure')||joined.includes('vibration')||joined.includes('pulls')){likely='Tire pressure, tire wear, wheel balance, alignment, or suspension components may be involved.';service='Tire / Wheel / Alignment Inspection';cost='Basic inspection first, then quote based on findings.';}
+      else if(joined.includes('battery')||joined.includes("won't start")){likely='Battery, starter, alternator, terminals, or electrical connections may be the cause.';service='Battery / Starting System Test';cost='Battery test first, replacement only if needed.';}
+      else if(joined.includes('a/c')||joined.includes('cooling')){likely='Low refrigerant, leak, compressor issue, or A/C electrical issue may be involved.';service='A/C Service';cost='A/C inspection and recharge/leak check as needed.';}
+      else if(joined.includes('engine')||joined.includes('oil')){likely='Engine sensor, oil level/leak, ignition, fuel, or maintenance issue may need attention.';service='Vehicle Inspection / Oil Service';cost='Inspection required before repair estimate.';}
+      const result=`MOST LIKELY CAUSE(S)\n${likely}\n\nSEVERITY\n${severity}\n\nRECOMMENDED SERVICE\n${service}\n\nESTIMATED COST RANGE\n${cost}\n\nSAFE TO DRIVE?\n${safe}\n\nIMMEDIATE NEXT STEP\nContact TireGuy Automotive or schedule an inspection before the issue gets worse.`;
+      if(resultEl) resultEl.textContent=result;
+      try{ await postJson('/api/diagnostics', {vehicle,mileage,symptoms:symptomText,when,extra,result}); }catch{}
+    }
+    if(txt) txt.textContent='🤖 Run AI Analysis';
+    if(spin) spin.style.display='none';
+    if(typeof dStep==='function') dStep(4);
+  };
+})();
+</script>
+
+</body></html>

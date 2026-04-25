@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TireGuy Admin</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap');
+:root{--gold:#d4af37;--navy:#0a1929;--navy2:#081322;--line:#1a3660;--muted:#9ca3af;--light:#f5f3f0;}
+*{box-sizing:border-box} body{margin:0;font-family:'DM Sans',sans-serif;background:linear-gradient(180deg,#081322,#0a1929);color:#fff;min-height:100vh}
+.hidden{display:none!important}
+.wrap{max-width:1200px;margin:0 auto;padding:28px 18px 60px}
+.brand{font-family:'Bebas Neue',sans-serif;letter-spacing:1px;font-size:38px;color:var(--gold)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:22px}
+.card{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 10px 30px rgba(0,0,0,.2)}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+.span-3{grid-column:span 3}.span-4{grid-column:span 4}.span-5{grid-column:span 5}.span-6{grid-column:span 6}.span-7{grid-column:span 7}.span-8{grid-column:span 8}.span-12{grid-column:span 12}
+@media(max-width:900px){.span-3,.span-4,.span-5,.span-6,.span-7,.span-8,.span-12{grid-column:span 12}}
+h1,h2,h3{margin:0 0 10px} h1{font-size:26px} h2{font-size:18px;color:var(--gold)} h3{font-size:15px;color:var(--gold)} .muted{color:var(--muted)}
+.row{display:flex;gap:12px;flex-wrap:wrap}.row>*{flex:1}
+label{display:block;font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:6px}
+input,textarea,select{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:#081322;color:#fff;font:inherit}
+select option{background:#081322}
+textarea{min-height:90px;resize:vertical}
+button{border:0;border-radius:12px;padding:12px 16px;font:inherit;font-weight:700;cursor:pointer;transition:opacity .15s}
+button:hover{opacity:.85}
+.btn-gold{background:var(--gold);color:#fff}.btn-dark{background:#13263f;color:white;border:1px solid var(--line)}.btn-red{background:#7f1d1d;color:#fff}.btn-green{background:#166534;color:#fff}.btn-sm{padding:7px 12px;font-size:13px;border-radius:9px}
+.kpi{font-size:32px;font-weight:800}.kpi-label{color:var(--muted);font-size:13px}
+.service{padding:14px;border:1px solid var(--line);border-radius:14px;background:#0b1a2b}
+.service+.service,.item+.item{margin-top:10px}
+.item{padding:14px;border:1px solid var(--line);border-radius:14px;background:#0b1a2b}
+.notice{padding:12px 14px;background:rgba(212,175,55,.12);border:1px solid rgba(212,175,55,.35);border-radius:12px;color:#f6e6a5}
+.status{font-size:13px;margin-top:8px;min-height:18px}
+.small{font-size:13px}
+.badge{display:inline-block;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:700;text-transform:uppercase}
+.tag-announcement{background:rgba(212,175,55,.2);color:#d4af37}
+.tag-promotion{background:rgba(34,197,94,.15);color:#22c55e}
+.tag-tip{background:rgba(59,130,246,.15);color:#3b82f6}
+.tag-general{background:rgba(156,163,175,.15);color:#9ca3af}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.divider{border:none;border-top:1px solid var(--line);margin:16px 0}
+
+/* Modal */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1000;display:flex;align-items:center;justify-content:center;padding:16px}
+.modal{background:#0d1f35;border:1px solid var(--line);border-radius:20px;padding:24px;width:100%;max-width:540px;max-height:90vh;overflow-y:auto}
+.modal h2{margin-bottom:16px}
+.modal-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+
+/* Tabs */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.tab{padding:8px 16px;border-radius:10px;background:#0b1a2b;border:1px solid var(--line);cursor:pointer;font-size:13px;font-weight:600;color:var(--muted)}
+.tab.active{background:var(--gold);border-color:var(--gold);color:#fff}
+
+/* Key input */
+.key-row{display:flex;gap:8px;align-items:center;margin-bottom:10px}
+.key-row input{flex:1;font-family:monospace;font-size:13px}
+.key-saved{color:#86efac;font-size:13px;margin-top:4px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div>
+      <div class="brand">TireGuy Admin</div>
+      <div class="muted small">Separate admin page for live Cloudflare updates.</div>
+    </div>
+    <button id="logoutBtn" class="btn-dark hidden" onclick="logout()">Log Out</button>
+  </div>
+
+  <!-- LOGIN -->
+  <div id="loginCard" class="card" style="max-width:420px">
+    <h1>Admin Login</h1>
+    <div class="muted" style="margin-bottom:14px">This page is not linked from the customer website.</div>
+    <label>Password</label>
+    <input id="loginPassword" type="password" placeholder="Enter admin password" onkeydown="if(event.key==='Enter')login()">
+    <button class="btn-gold" style="margin-top:14px;width:100%" onclick="login()">Login</button>
+    <div id="loginStatus" class="status"></div>
+    <div class="notice small" style="margin-top:14px">Default password: <strong>admin123!</strong> Change it after first login.</div>
+  </div>
+
+  <!-- APP -->
+  <div id="app" class="hidden">
+    <div class="grid">
+
+      <!-- KPI Row -->
+      <div class="card span-3"><div class="kpi-label">Services</div><div class="kpi" id="svcCount">0</div></div>
+      <div class="card span-3"><div class="kpi-label">Contact Submissions</div><div class="kpi" id="contactCount">0</div></div>
+      <div class="card span-3"><div class="kpi-label">Diagnostics Logs</div><div class="kpi" id="diagCount">0</div></div>
+      <div class="card span-3"><div class="kpi-label">Community Posts</div><div class="kpi" id="postCount">0</div></div>
+
+      <!-- Site Content -->
+      <div class="card span-8">
+        <h2>Site Content</h2>
+        <div class="row">
+          <div><label>Shop Name</label><input id="shop_name"></div>
+          <div><label>Tagline</label><input id="tagline"></div>
+        </div>
+        <div class="row">
+          <div><label>Address</label><input id="address"></div>
+          <div><label>Phone</label><input id="phone"></div>
+          <div><label>Email</label><input id="email"></div>
+        </div>
+        <div class="row">
+          <div><label>Weekday Hours</label><input id="hours_weekday"></div>
+          <div><label>Weekend Hours</label><input id="hours_weekend"></div>
+        </div>
+        <div><label>Hero Headline (HTML allowed)</label><input id="hero_headline"></div>
+        <div><label>Hero Subtext</label><textarea id="hero_sub" style="min-height:60px"></textarea></div>
+        <div class="row">
+          <div><label>About Heading</label><input id="about_heading"></div>
+        </div>
+        <div><label>About Body</label><textarea id="about_body"></textarea></div>
+        <button class="btn-gold" style="margin-top:14px" onclick="saveContent()">Save Site Content</button>
+        <div id="contentStatus" class="status"></div>
+      </div>
+
+      <!-- Admin Password -->
+      <div class="card span-4">
+        <h2>Admin Password</h2>
+        <label>Current Password</label><input id="currentPassword" type="password">
+        <label style="margin-top:10px">New Password</label><input id="newPassword" type="password">
+        <label style="margin-top:10px">Confirm New Password</label><input id="confirmPassword" type="password">
+        <button class="btn-gold" style="margin-top:14px;width:100%" onclick="changePassword()">Update Password</button>
+        <div id="passwordStatus" class="status"></div>
+
+        <hr class="divider">
+        <h3>Visibility</h3>
+        <label style="display:flex;gap:8px;align-items:center;text-transform:none;letter-spacing:0;margin-top:8px">
+          <input id="show_ai_diagnostics" type="checkbox" checked style="width:auto"> Show AI Diagnostics tool
+        </label>
+        <label style="display:flex;gap:8px;align-items:center;text-transform:none;letter-spacing:0;margin-top:8px">
+          <input id="show_community" type="checkbox" checked style="width:auto"> Show Community Board
+        </label>
+        <button class="btn-dark" style="margin-top:12px;width:100%" onclick="saveContent()">Save Visibility</button>
+      </div>
+
+      <!-- Services -->
+      <div class="card span-8">
+        <h2>Services</h2>
+        <input id="svc_id" type="hidden">
+        <div class="row">
+          <div style="max-width:110px"><label>Icon</label><input id="svc_icon" placeholder="🔧"></div>
+          <div><label>Name</label><input id="svc_name"></div>
+          <div><label>Time Estimate</label><input id="svc_time"></div>
+        </div>
+        <div><label>Description</label><textarea id="svc_desc" style="min-height:70px"></textarea></div>
+        <div class="row">
+          <div><label>Sort Order</label><input id="svc_sort" type="number" value="0"></div>
+          <div style="display:flex;align-items:flex-end"><label style="display:flex;gap:8px;align-items:center;text-transform:none;letter-spacing:0"><input id="svc_visible" type="checkbox" checked style="width:auto"> Show on customer site</label></div>
+        </div>
+        <div class="row" style="margin-top:12px">
+          <button class="btn-gold" onclick="saveService()">Save Service</button>
+          <button class="btn-dark" onclick="resetServiceForm()">Clear Form</button>
+        </div>
+        <div id="servicesStatus" class="status"></div>
+        <div id="serviceList" style="margin-top:14px"></div>
+      </div>
+
+      <!-- API Keys -->
+      <div class="card span-4">
+        <h2>🤖 AI API Keys</h2>
+        <p class="muted small" style="margin-bottom:14px">Keys are stored securely in Cloudflare KV and never exposed to the public. Used to power the AI Diagnostics feature.</p>
+        <label>OpenRouter API Key</label>
+        <div class="key-row">
+          <input id="key_openrouter" type="password" placeholder="sk-or-v1-…">
+        </div>
+        <div id="key_openrouter_status" class="key-saved"></div>
+        <div class="row" style="margin-top:10px">
+          <button class="btn-gold btn-sm" onclick="saveApiKey('openrouter','key_openrouter')">Save Key</button>
+          <button class="btn-red btn-sm" onclick="deleteApiKey('openrouter')">Remove Key</button>
+        </div>
+        <div class="notice small" style="margin-top:14px">Get a free key at <strong>openrouter.ai</strong>. The diagnostics tool uses <em>gpt-4o-mini</em> by default.</div>
+        <div id="apiKeyStatus" class="status"></div>
+      </div>
+
+      <!-- Social Links -->
+      <div class="card span-6">
+        <h2>🔗 Social Links</h2>
+        <p class="muted small" style="margin-bottom:14px">Leave a field as <code>#</code> to hide that icon link on the site.</p>
+        <div class="row">
+          <div><label>Facebook URL</label><input id="facebook" placeholder="https://facebook.com/…"></div>
+          <div><label>Instagram URL</label><input id="instagram" placeholder="https://instagram.com/…"></div>
+        </div>
+        <div class="row">
+          <div><label>X / Twitter URL</label><input id="twitter" placeholder="https://x.com/…"></div>
+          <div><label>YouTube URL</label><input id="youtube" placeholder="https://youtube.com/…"></div>
+        </div>
+        <div class="row">
+          <div><label>LinkedIn URL</label><input id="linkedin" placeholder="https://linkedin.com/…"></div>
+          <div><label>TikTok URL</label><input id="tiktok" placeholder="https://tiktok.com/…"></div>
+        </div>
+        <button class="btn-gold" style="margin-top:14px" onclick="saveSocials()">Save Social Links</button>
+        <div id="socialStatus" class="status"></div>
+      </div>
+
+      <!-- FAQ Management -->
+      <div class="card span-6">
+        <h2>❓ FAQ Management</h2>
+        <input id="faq_id" type="hidden">
+        <div><label>Question</label><input id="faq_question" placeholder="e.g. Do you offer warranties?"></div>
+        <div style="margin-top:10px"><label>Answer</label><textarea id="faq_answer" placeholder="Answer text…" style="min-height:70px"></textarea></div>
+        <div class="row" style="margin-top:10px">
+          <button class="btn-gold" onclick="saveFAQ()">Save FAQ</button>
+          <button class="btn-dark" onclick="resetFaqForm()">Clear</button>
+        </div>
+        <div id="faqStatus" class="status"></div>
+        <div id="faqList" style="margin-top:14px"></div>
+      </div>
+
+      <!-- Community Board -->
+      <div class="card span-12">
+        <h2>📋 Community Board</h2>
+        <div class="tabs">
+          <div class="tab active" onclick="switchCommunityTab('list')">Posts</div>
+          <div class="tab" onclick="switchCommunityTab('new')">+ Add Post</div>
+        </div>
+
+        <div id="communityList">
+          <div id="postList"></div>
+        </div>
+
+        <div id="communityNew" class="hidden">
+          <input id="post_id" type="hidden">
+          <div class="row">
+            <div><label>Title</label><input id="post_title" placeholder="Post title…"></div>
+            <div style="max-width:180px">
+              <label>Category</label>
+              <select id="post_category">
+                <option value="announcement">📢 Announcement</option>
+                <option value="promotion">🏷️ Promotion</option>
+                <option value="tip">💡 Tip</option>
+                <option value="general">📌 General</option>
+              </select>
+            </div>
+          </div>
+          <div style="margin-top:10px"><label>Content</label><textarea id="post_content" placeholder="Post body…"></textarea></div>
+          <div class="row" style="margin-top:10px">
+            <div><label>Author</label><input id="post_author" placeholder="TireGuy Team" value="TireGuy Team"></div>
+            <div style="display:flex;align-items:flex-end"><label style="display:flex;gap:8px;align-items:center;text-transform:none;letter-spacing:0"><input id="post_pinned" type="checkbox" style="width:auto"> 📌 Pin this post</label></div>
+          </div>
+          <div class="row" style="margin-top:12px">
+            <button class="btn-gold" onclick="savePost()">Save Post</button>
+            <button class="btn-dark" onclick="resetPostForm();switchCommunityTab('list')">Cancel</button>
+          </div>
+          <div id="postStatus" class="status"></div>
+        </div>
+      </div>
+
+      <!-- Contact Submissions -->
+      <div class="card span-12">
+        <h2>📬 Contact Submissions</h2>
+        <div class="row" style="margin-bottom:12px">
+          <input id="contactSearch" placeholder="Search by name, email, or message…" oninput="renderContacts()" style="max-width:340px">
+          <button class="btn-red btn-sm" onclick="confirmDeleteAll('contacts')" style="max-width:180px">Delete All Contacts</button>
+        </div>
+        <div id="contactList"></div>
+      </div>
+
+      <!-- Diagnostics Logs -->
+      <div class="card span-12">
+        <h2>🩺 Diagnostics Logs</h2>
+        <div class="row" style="margin-bottom:12px">
+          <input id="diagSearch" placeholder="Search by name, vehicle, or symptoms…" oninput="renderDiagnostics()" style="max-width:340px">
+          <button class="btn-red btn-sm" onclick="confirmDeleteAll('diagnostics')" style="max-width:200px">Delete All Diagnostics</button>
+        </div>
+        <div id="diagList"></div>
+      </div>
+
+    </div><!-- /grid -->
+  </div><!-- /app -->
+</div><!-- /wrap -->
+
+<!-- Edit Contact Modal -->
+<div id="editContactModal" class="modal-bg hidden">
+  <div class="modal">
+    <h2>Edit Contact</h2>
+    <input id="ec_id" type="hidden">
+    <div class="row">
+      <div><label>Name</label><input id="ec_name"></div>
+      <div><label>Email</label><input id="ec_email"></div>
+    </div>
+    <div style="margin-top:10px"><label>Phone</label><input id="ec_phone"></div>
+    <div style="margin-top:10px"><label>Message</label><textarea id="ec_message"></textarea></div>
+    <div class="modal-actions">
+      <button class="btn-gold" onclick="saveContact()">Save Changes</button>
+      <button class="btn-dark" onclick="closeModal('editContactModal')">Cancel</button>
+    </div>
+    <div id="ecStatus" class="status"></div>
+  </div>
+</div>
+
+<script>
+const DEFAULT_SETTINGS_KEYS = ['shop_name','tagline','address','phone','email','hours_weekday','hours_weekend','hero_headline','hero_sub','about_heading','about_body','facebook','instagram','twitter','youtube','linkedin','tiktok'];
+let siteSettings = {};
+let services = [];
+let contacts = [];
+let diagnostics = [];
+let community = [];
+let faqs = [];
+
+// ─── API Helper ───
+async function api(url, options={}) {
+  const res = await fetch(url, {
+    credentials:'same-origin',
+    headers:{'Content-Type':'application/json',...(options.headers||{})},
+    ...options
+  });
+  let data = {};
+  try { data = await res.json(); } catch {}
+  if(!res.ok) throw new Error(data.error || 'Request failed');
+  return data;
+}
+
+function setStatus(id, text, good=false) {
+  const el = document.getElementById(id);
+  if(!el) return;
+  el.textContent = text || '';
+  el.style.color = good ? '#86efac' : '#fca5a5';
+}
+
+function escapeHtml(v) {
+  return String(v||'').replace(/[&<>"]/g, s=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[s]));
+}
+
+function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
+
+// ─── Auth ───
+async function checkAuth() {
+  try {
+    const data = await api('/api/admin/session');
+    if(data.authenticated) showApp();
+  } catch {}
+}
+
+async function login() {
+  setStatus('loginStatus','');
+  try {
+    await api('/api/admin/login',{method:'POST',body:JSON.stringify({password:document.getElementById('loginPassword').value})});
+    document.getElementById('loginPassword').value = '';
+    showApp();
+  } catch(err) { setStatus('loginStatus', err.message); }
+}
+
+function showApp() {
+  document.getElementById('loginCard').classList.add('hidden');
+  document.getElementById('app').classList.remove('hidden');
+  document.getElementById('logoutBtn').classList.remove('hidden');
+  loadAll();
+}
+
+async function logout() {
+  try { await api('/api/admin/logout',{method:'POST',body:'{}'}); } catch {}
+  location.reload();
+}
+
+// ─── Load All Data ───
+async function loadAll() {
+  const [content, c, d, comm, faqsData, apiKeysData] = await Promise.all([
+    api('/api/admin/content'),
+    api('/api/admin/contacts'),
+    api('/api/admin/diagnostics'),
+    api('/api/admin/community'),
+    api('/api/admin/faqs'),
+    api('/api/admin/apikeys').catch(()=>({keys:{},has:{}}))
+  ]);
+  siteSettings = content.settings || {};
+  services = (content.services || []).sort((a,b)=>(a.sort_order||0)-(b.sort_order||0));
+  contacts = c.contacts || [];
+  diagnostics = d.diagnostics || [];
+  community = comm.posts || [];
+  faqs = faqsData.faqs || [];
+
+  // Show masked API key status
+  if(apiKeysData.has?.openrouter) {
+    document.getElementById('key_openrouter_status').textContent = '✓ Key configured: ' + (apiKeysData.keys?.openrouter||'');
+  } else {
+    document.getElementById('key_openrouter_status').textContent = '';
+  }
+
+  render();
+}
+
+// ─── Render ───
+function render() {
+  // Settings fields
+  DEFAULT_SETTINGS_KEYS.forEach(k => {
+    const el = document.getElementById(k);
+    if(el) el.value = siteSettings[k] || '';
+  });
+  if(document.getElementById('show_ai_diagnostics')) document.getElementById('show_ai_diagnostics').checked = siteSettings.show_ai_diagnostics !== false;
+  if(document.getElementById('show_community')) document.getElementById('show_community').checked = siteSettings.show_community !== false;
+
+  // KPIs
+  document.getElementById('svcCount').textContent = services.length;
+  document.getElementById('contactCount').textContent = contacts.length;
+  document.getElementById('diagCount').textContent = diagnostics.length;
+  document.getElementById('postCount').textContent = community.length;
+
+  renderServices();
+  renderContacts();
+  renderDiagnostics();
+  renderPosts();
+  renderFAQs();
+}
+
+// ─── Services ───
+function resetServiceForm() {
+  document.getElementById('svc_id').value='';
+  ['svc_icon','svc_name','svc_time','svc_desc'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('svc_sort').value = services.length + 1;
+  document.getElementById('svc_visible').checked = true;
+}
+
+function editService(id) {
+  const s = services.find(x=>String(x.id)===String(id));
+  if(!s) return;
+  document.getElementById('svc_id').value = s.id||'';
+  document.getElementById('svc_icon').value = s.icon||'';
+  document.getElementById('svc_name').value = s.name||'';
+  document.getElementById('svc_time').value = s.time_estimate||'';
+  document.getElementById('svc_desc').value = s.description||'';
+  document.getElementById('svc_sort').value = s.sort_order||0;
+  document.getElementById('svc_visible').checked = s.visible!==false;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+async function saveService() {
+  const id = document.getElementById('svc_id').value || crypto.randomUUID();
+  const item = {
+    id, icon:document.getElementById('svc_icon').value||'🔧',
+    name:document.getElementById('svc_name').value.trim(),
+    description:document.getElementById('svc_desc').value.trim(),
+    time_estimate:document.getElementById('svc_time').value.trim()||'Varies',
+    sort_order:Number(document.getElementById('svc_sort').value||0),
+    visible:document.getElementById('svc_visible').checked
+  };
+  if(!item.name) return setStatus('servicesStatus','Service name is required.');
+  const i = services.findIndex(x=>String(x.id)===String(id));
+  if(i>=0) services[i]=item; else services.push(item);
+  await saveContent(true);
+  resetServiceForm();
+  setStatus('servicesStatus','Service saved.', true);
+}
+
+async function removeService(id) {
+  if(!confirm('Delete this service?')) return;
+  services = services.filter(x=>String(x.id)!==String(id));
+  await saveContent(true);
+  setStatus('servicesStatus','Service deleted.', true);
+}
+
+function renderServices() {
+  document.getElementById('serviceList').innerHTML = services.length ? services.map(s=>`
+    <div class="service">
+      <div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start">
+        <div>
+          <div style="font-weight:800">${escapeHtml(s.icon||'🔧')} ${escapeHtml(s.name||'Service')}</div>
+          <div class="muted small">${escapeHtml(s.time_estimate||'Varies')} • sort ${s.sort_order||0} • ${s.visible===false?'hidden':'visible'}</div>
+          <div class="small" style="margin-top:6px">${escapeHtml(s.description||'')}</div>
+        </div>
+        <div class="row" style="max-width:210px">
+          <button class="btn-dark btn-sm" onclick="editService('${s.id}')">Edit</button>
+          <button class="btn-red btn-sm" onclick="removeService('${s.id}')">Delete</button>
+        </div>
+      </div>
+    </div>`).join('') : '<div class="notice">No services yet.</div>';
+}
+
+// ─── Content / Social Save ───
+async function saveContent(silent=false) {
+  DEFAULT_SETTINGS_KEYS.forEach(k => {
+    const el = document.getElementById(k);
+    if(el) siteSettings[k] = el.value;
+  });
+  siteSettings.show_ai_diagnostics = document.getElementById('show_ai_diagnostics')?.checked ?? true;
+  siteSettings.show_community = document.getElementById('show_community')?.checked ?? true;
+  try {
+    const data = await api('/api/admin/content',{method:'POST',body:JSON.stringify({settings:siteSettings,services})});
+    siteSettings = data.settings || siteSettings;
+    services = (data.services||services).sort((a,b)=>(a.sort_order||0)-(b.sort_order||0));
+    render();
+    if(!silent) setStatus('contentStatus','Saved! Customer website updates within a few seconds.', true);
+  } catch(err) {
+    if(!silent) setStatus('contentStatus', err.message);
+    throw err;
+  }
+}
+
+async function saveSocials() {
+  ['facebook','instagram','twitter','youtube','linkedin','tiktok'].forEach(k=>{
+    siteSettings[k] = document.getElementById(k)?.value||'#';
+  });
+  try {
+    await api('/api/admin/content',{method:'POST',body:JSON.stringify({settings:siteSettings,services})});
+    setStatus('socialStatus','Social links saved!', true);
+  } catch(err) { setStatus('socialStatus', err.message); }
+}
+
+// ─── Password ───
+async function changePassword() {
+  const cur = document.getElementById('currentPassword').value;
+  const nw = document.getElementById('newPassword').value;
+  const cf = document.getElementById('confirmPassword').value;
+  if(nw!==cf) return setStatus('passwordStatus','Passwords do not match.');
+  try {
+    await api('/api/admin/password',{method:'POST',body:JSON.stringify({currentPassword:cur,newPassword:nw})});
+    ['currentPassword','newPassword','confirmPassword'].forEach(id=>document.getElementById(id).value='');
+    setStatus('passwordStatus','Password updated.', true);
+  } catch(err) { setStatus('passwordStatus', err.message); }
+}
+
+// ─── API Keys ───
+async function saveApiKey(service, inputId) {
+  const key = document.getElementById(inputId).value.trim();
+  if(!key) return setStatus('apiKeyStatus','Enter a key first.');
+  try {
+    await api('/api/admin/apikeys',{method:'POST',body:JSON.stringify({service,key})});
+    document.getElementById(inputId).value='';
+    setStatus('apiKeyStatus','Key saved securely.', true);
+    await loadAll();
+  } catch(err) { setStatus('apiKeyStatus', err.message); }
+}
+
+async function deleteApiKey(service) {
+  if(!confirm('Remove this API key?')) return;
+  try {
+    await api('/api/admin/apikeys',{method:'POST',body:JSON.stringify({service,key:''})});
+    setStatus('apiKeyStatus','Key removed.', true);
+    await loadAll();
+  } catch(err) { setStatus('apiKeyStatus', err.message); }
+}
+
+// ─── Community Board ───
+function switchCommunityTab(tab) {
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('communityList').classList.toggle('hidden', tab==='new');
+  document.getElementById('communityNew').classList.toggle('hidden', tab==='list');
+  if(tab==='new') resetPostForm();
+}
+
+function resetPostForm() {
+  document.getElementById('post_id').value='';
+  document.getElementById('post_title').value='';
+  document.getElementById('post_content').value='';
+  document.getElementById('post_author').value='TireGuy Team';
+  document.getElementById('post_category').value='announcement';
+  document.getElementById('post_pinned').checked=false;
+}
+
+function editPost(id) {
+  const p = community.find(x=>x.id===id);
+  if(!p) return;
+  switchCommunityTab('new');
+  // Fix tab highlight
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab')[1].classList.add('active');
+  document.getElementById('communityList').classList.add('hidden');
+  document.getElementById('communityNew').classList.remove('hidden');
+  document.getElementById('post_id').value = p.id;
+  document.getElementById('post_title').value = p.title||'';
+  document.getElementById('post_content').value = p.content||'';
+  document.getElementById('post_author').value = p.author||'TireGuy Team';
+  document.getElementById('post_category').value = p.category||'announcement';
+  document.getElementById('post_pinned').checked = !!p.pinned;
+}
+
+async function savePost() {
+  const id = document.getElementById('post_id').value;
+  const body = {
+    title: document.getElementById('post_title').value.trim(),
+    content: document.getElementById('post_content').value.trim(),
+    author: document.getElementById('post_author').value.trim()||'TireGuy Team',
+    category: document.getElementById('post_category').value,
+    pinned: document.getElementById('post_pinned').checked
+  };
+  if(!body.title) return setStatus('postStatus','Title is required.');
+  try {
+    if(id) {
+      await api('/api/admin/community?id='+encodeURIComponent(id),{method:'PUT',body:JSON.stringify(body)});
+    } else {
+      await api('/api/admin/community',{method:'POST',body:JSON.stringify(body)});
+    }
+    setStatus('postStatus','Post saved!', true);
+    await loadAll();
+    setTimeout(()=>{ resetPostForm(); switchCommunityTabById('list'); },800);
+  } catch(err) { setStatus('postStatus', err.message); }
+}
+
+function switchCommunityTabById(tab) {
+  document.querySelectorAll('.tab')[0].classList.add('active');
+  document.querySelectorAll('.tab')[1].classList.remove('active');
+  document.getElementById('communityList').classList.remove('hidden');
+  document.getElementById('communityNew').classList.add('hidden');
+}
+
+async function deletePost(id) {
+  if(!confirm('Delete this post?')) return;
+  try {
+    await api('/api/admin/community?id='+encodeURIComponent(id),{method:'DELETE'});
+    await loadAll();
+  } catch(err) { alert(err.message); }
+}
+
+function renderPosts() {
+  const catColors = {announcement:'#d4af37',promotion:'#22c55e',tip:'#3b82f6',general:'#9ca3af'};
+  document.getElementById('postList').innerHTML = community.length ? community.map(p=>`
+    <div class="item">
+      <div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap">
+        <div style="flex:1;min-width:200px">
+          ${p.pinned?'<span class="badge" style="background:rgba(212,175,55,.2);color:#d4af37;margin-bottom:6px;display:inline-block">📌 PINNED</span><br>':''}
+          <span class="badge" style="background:rgba(${catColors[p.category]||'#9ca3af'}.15);color:${catColors[p.category]||'#9ca3af'};margin-bottom:6px">${p.category||'general'}</span>
+          <div style="font-weight:800;font-size:15px;margin-bottom:4px">${escapeHtml(p.title||'')}</div>
+          <div class="small" style="color:#cbd5e1;margin-bottom:6px">${escapeHtml(p.content||'')}</div>
+          <div class="muted small">${(p.created_at||'').split('T')[0]} · ${escapeHtml(p.author||'TireGuy Team')}</div>
+        </div>
+        <div class="actions">
+          <button class="btn-dark btn-sm" onclick="editPost('${p.id}')">✏️ Edit</button>
+          <button class="btn-red btn-sm" onclick="deletePost('${p.id}')">🗑️ Delete</button>
+        </div>
+      </div>
+    </div>`).join('') : '<div class="notice">No community posts yet. Click "+ Add Post" to create one.</div>';
+}
+
+// ─── FAQ ───
+function resetFaqForm() {
+  document.getElementById('faq_id').value='';
+  document.getElementById('faq_question').value='';
+  document.getElementById('faq_answer').value='';
+}
+
+function editFAQ(id) {
+  const f = faqs.find(x=>x.id===id);
+  if(!f) return;
+  document.getElementById('faq_id').value = f.id;
+  document.getElementById('faq_question').value = f.question||'';
+  document.getElementById('faq_answer').value = f.answer||'';
+  window.scrollTo({top:document.getElementById('faq_question').getBoundingClientRect().top+window.scrollY-120,behavior:'smooth'});
+}
+
+async function saveFAQ() {
+  const id = document.getElementById('faq_id').value;
+  const body = {
+    question: document.getElementById('faq_question').value.trim(),
+    answer: document.getElementById('faq_answer').value.trim()
+  };
+  if(!body.question) return setStatus('faqStatus','Question is required.');
+  try {
+    if(id) {
+      await api('/api/admin/faqs?id='+encodeURIComponent(id),{method:'PUT',body:JSON.stringify(body)});
+    } else {
+      await api('/api/admin/faqs',{method:'POST',body:JSON.stringify(body)});
+    }
+    setStatus('faqStatus','FAQ saved!', true);
+    resetFaqForm();
+    await loadAll();
+  } catch(err) { setStatus('faqStatus', err.message); }
+}
+
+async function deleteFAQ(id) {
+  if(!confirm('Delete this FAQ?')) return;
+  try {
+    await api('/api/admin/faqs?id='+encodeURIComponent(id),{method:'DELETE'});
+    await loadAll();
+  } catch(err) { alert(err.message); }
+}
+
+function renderFAQs() {
+  document.getElementById('faqList').innerHTML = faqs.length ? faqs.map(f=>`
+    <div class="item" style="margin-top:10px">
+      <div style="font-weight:700;margin-bottom:4px">${escapeHtml(f.question||'')}</div>
+      <div class="small" style="color:#cbd5e1;margin-bottom:8px">${escapeHtml(f.answer||'')}</div>
+      <div class="actions">
+        <button class="btn-dark btn-sm" onclick="editFAQ('${f.id}')">✏️ Edit</button>
+        <button class="btn-red btn-sm" onclick="deleteFAQ('${f.id}')">🗑️ Delete</button>
+      </div>
+    </div>`).join('') : '<div class="notice small" style="margin-top:10px">No FAQs yet. Add your first question above.</div>';
+}
+
+// ─── Contacts ───
+function renderContacts() {
+  const q = (document.getElementById('contactSearch')?.value||'').toLowerCase();
+  const filtered = q ? contacts.filter(c=>(c.name+c.email+c.message+c.phone).toLowerCase().includes(q)) : contacts;
+  document.getElementById('contactList').innerHTML = filtered.length ? filtered.map(c=>`
+    <div class="item">
+      <div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap">
+        <div style="flex:1;min-width:200px">
+          <div style="font-weight:700">${escapeHtml(c.name||'Unknown')}</div>
+          <div class="muted small">${escapeHtml(c.email||'')}${c.phone?' • '+escapeHtml(c.phone):''}</div>
+          <div style="margin-top:6px;font-size:14px">${escapeHtml(c.message||'')}</div>
+          <div class="muted small" style="margin-top:6px">${escapeHtml((c.created_at||'').replace('T',' ').slice(0,16))}${c.updated_at?' (edited)':''}</div>
+        </div>
+        <div class="actions">
+          <button class="btn-dark btn-sm" onclick="openEditContact('${c.id}')">✏️ Edit</button>
+          <button class="btn-red btn-sm" onclick="deleteContact('${c.id}')">🗑️ Delete</button>
+        </div>
+      </div>
+    </div>`).join('') : '<div class="notice">' + (q?'No matches found.':'No contact submissions yet.') + '</div>';
+}
+
+function openEditContact(id) {
+  const c = contacts.find(x=>x.id===id);
+  if(!c) return;
+  document.getElementById('ec_id').value = c.id;
+  document.getElementById('ec_name').value = c.name||'';
+  document.getElementById('ec_email').value = c.email||'';
+  document.getElementById('ec_phone').value = c.phone||'';
+  document.getElementById('ec_message').value = c.message||'';
+  setStatus('ecStatus','');
+  openModal('editContactModal');
+}
+
+async function saveContact() {
+  const id = document.getElementById('ec_id').value;
+  const body = {
+    name: document.getElementById('ec_name').value.trim(),
+    email: document.getElementById('ec_email').value.trim(),
+    phone: document.getElementById('ec_phone').value.trim(),
+    message: document.getElementById('ec_message').value.trim()
+  };
+  try {
+    await api('/api/admin/contacts?id='+encodeURIComponent(id),{method:'PUT',body:JSON.stringify(body)});
+    contacts = contacts.map(x=>x.id===id?{...x,...body,updated_at:new Date().toISOString()}:x);
+    renderContacts();
+    closeModal('editContactModal');
+  } catch(err) { setStatus('ecStatus', err.message); }
+}
+
+async function deleteContact(id) {
+  if(!confirm('Delete this contact submission?')) return;
+  try {
+    await api('/api/admin/contacts?id='+encodeURIComponent(id),{method:'DELETE'});
+    contacts = contacts.filter(x=>x.id!==id);
+    renderContacts();
+    document.getElementById('contactCount').textContent = contacts.length;
+  } catch(err) { alert(err.message); }
+}
+
+// ─── Diagnostics ───
+function renderDiagnostics() {
+  const q = (document.getElementById('diagSearch')?.value||'').toLowerCase();
+  const filtered = q ? diagnostics.filter(d=>(d.customer_name+d.vehicle+d.symptoms+d.result).toLowerCase().includes(q)) : diagnostics;
+  document.getElementById('diagList').innerHTML = filtered.length ? filtered.map(d=>`
+    <div class="item">
+      <div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap">
+        <div style="flex:1;min-width:200px">
+          <div style="font-weight:700">${escapeHtml(d.customer_name||'Guest')} ${d.ai_powered?'<span class="badge" style="background:rgba(139,92,246,.2);color:#a78bfa;margin-left:6px">🤖 AI</span>':''}</div>
+          <div class="muted small">${escapeHtml(d.vehicle||'')}${d.mileage?' • '+escapeHtml(String(d.mileage))+' mi':''}</div>
+          <div style="margin-top:6px"><strong>Symptoms:</strong> ${escapeHtml(d.symptoms||'')}</div>
+          <div style="margin-top:6px;white-space:pre-wrap;font-size:13px;color:#cbd5e1">${escapeHtml(d.result||'')}</div>
+          <div class="muted small" style="margin-top:6px">${escapeHtml((d.created_at||'').replace('T',' ').slice(0,16))}</div>
+        </div>
+        <div class="actions">
+          <button class="btn-red btn-sm" onclick="deleteDiag('${d.id}')">🗑️ Delete</button>
+        </div>
+      </div>
+    </div>`).join('') : '<div class="notice">' + (q?'No matches found.':'No diagnostics logged yet.') + '</div>';
+}
+
+async function deleteDiag(id) {
+  if(!confirm('Delete this diagnostic log?')) return;
+  try {
+    await api('/api/admin/diagnostics?id='+encodeURIComponent(id),{method:'DELETE'});
+    diagnostics = diagnostics.filter(x=>x.id!==id);
+    renderDiagnostics();
+    document.getElementById('diagCount').textContent = diagnostics.length;
+  } catch(err) { alert(err.message); }
+}
+
+// ─── Bulk Delete ───
+async function confirmDeleteAll(type) {
+  const label = type==='contacts'?'ALL contact submissions':'ALL diagnostic logs';
+  if(!confirm(`Are you sure you want to permanently delete ${label}? This cannot be undone.`)) return;
+  try {
+    if(type==='contacts') {
+      for(const c of [...contacts]) await api('/api/admin/contacts?id='+encodeURIComponent(c.id),{method:'DELETE'});
+      contacts=[];
+      renderContacts();
+      document.getElementById('contactCount').textContent=0;
+    } else {
+      for(const d of [...diagnostics]) await api('/api/admin/diagnostics?id='+encodeURIComponent(d.id),{method:'DELETE'});
+      diagnostics=[];
+      renderDiagnostics();
+      document.getElementById('diagCount').textContent=0;
+    }
+  } catch(err) { alert(err.message); }
+}
+
+// ─── Init ───
+checkAuth();
+resetServiceForm();
+setInterval(()=>{
+  if(!document.getElementById('app').classList.contains('hidden')) loadAll().catch(()=>{});
+}, 30000);
+</script>
+</body>
+</html>
