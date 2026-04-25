@@ -3,5 +3,5 @@ pages_build_output_dir = "."
 
 [[kv_namespaces]]
 binding = "TG_DATA"
-id = "ac37a12ddc7a42859fdf87ca321b6f5d"
+id = "5454a1d1a26e47aabdb6fac283382cb9"
 preview_id = "REPLACE_WITH_YOUR_KV_PREVIEW_NAMESPACE_ID"
